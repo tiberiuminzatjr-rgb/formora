@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import QuoteForm from "./components/QuoteForm";
+import Link from "next/link";
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -566,34 +567,51 @@ export default function Home() {
             </div>
 
 
-            {/* PROJECT 01 */}
-            <article className="overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.025]">
-
+            {/* PROJECT 01 — APEX AUTO */}
+            <Link
+                href="/showcase/autoservice"
+                className="group mt-6 block overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.025] transition duration-500 hover:border-red-500/25 hover:bg-white/[0.035]"
+            >
               {/* PROJECT HEADER */}
               <div className="flex flex-col justify-between gap-6 border-b border-white/10 p-8 md:flex-row md:items-center md:p-10">
                 <div>
                   <div className="mb-4 flex flex-wrap items-center gap-3">
-            <span className="text-xs uppercase tracking-[0.3em] text-blue-400">
-              01 — Automotive
-            </span>
+        <span className="text-xs uppercase tracking-[0.3em] text-red-400">
+          01 — Automotive
+        </span>
 
-                    <span className="rounded-full border border-white/10 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-white/35">
-              Concept Redesign
-            </span>
+                    <span className="rounded-full border border-red-500/20 bg-red-500/[0.06] px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-red-400">
+          Live Showcase
+        </span>
+
+                    <span className="rounded-full border border-white/10 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-white/30">
+          Rebrand + Website
+        </span>
                   </div>
 
                   <h3 className="text-3xl font-medium tracking-[-0.03em] md:text-4xl">
                     Auto Service
+                    <span className="mx-3 text-white/20">→</span>
+                    <span className="font-semibold">
+          APEX<span className="text-red-500">AUTO.</span>
+        </span>
                   </h3>
+
+                  <p className="mt-4 max-w-2xl text-sm leading-6 text-white/35">
+                    A complete transformation of a traditional local workshop into a
+                    modern automotive brand — from identity and positioning to a
+                    conversion-focused digital experience.
+                  </p>
                 </div>
 
-                <div className="text-sm text-white/35">
-                  Before
-                  <span className="mx-3 text-blue-400">→</span>
-                  After
+                <div className="flex items-center gap-3 text-xs uppercase tracking-[0.18em] text-white/35">
+                  View transformation
+
+                  <span className="text-xl text-red-400 transition duration-300 group-hover:-translate-y-1 group-hover:translate-x-1">
+        ↗
+      </span>
                 </div>
               </div>
-
 
               {/* BEFORE / AFTER */}
               <div className="grid lg:grid-cols-2">
@@ -601,13 +619,13 @@ export default function Home() {
                 {/* BEFORE */}
                 <div className="border-b border-white/10 p-6 md:p-10 lg:border-b-0 lg:border-r">
                   <div className="mb-5 flex items-center justify-between">
-            <span className="text-xs uppercase tracking-[0.25em] text-white/25">
-              Before
-            </span>
+        <span className="text-xs uppercase tracking-[0.25em] text-white/25">
+          Before
+        </span>
 
                     <span className="text-xs text-white/20">
-              Outdated website
-            </span>
+          Old identity
+        </span>
                   </div>
 
                   <div className="overflow-hidden rounded-[20px] border border-white/10 bg-[#E8E8E4] text-[#252525]">
@@ -618,7 +636,11 @@ export default function Home() {
                       <span className="h-2.5 w-2.5 rounded-full bg-black/15" />
                       <span className="h-2.5 w-2.5 rounded-full bg-black/15" />
 
-                      <div className="ml-3 h-5 flex-1 rounded bg-white/60" />
+                      <div className="ml-3 flex h-5 flex-1 items-center rounded bg-white/60 px-3">
+            <span className="text-[8px] text-black/25">
+              autoservice.ro
+            </span>
+                      </div>
                     </div>
 
                     <div className="p-5">
@@ -641,113 +663,127 @@ export default function Home() {
                         </div>
 
                         <p className="mt-3 max-w-md text-xs leading-5 text-black/60">
-                          We offer professional car repair and maintenance
-                          services. Contact us for more information about our
-                          services and prices.
+                          We offer professional car repair and maintenance services.
+                          Contact us for more information about our services and prices.
                         </p>
 
-                        <button className="mt-5 border border-black bg-[#DDD] px-4 py-2 text-[10px]">
+                        <div className="mt-5 inline-block border border-black bg-[#DDD] px-4 py-2 text-[10px]">
                           READ MORE
-                        </button>
+                        </div>
                       </div>
 
                       <div className="mt-4 grid grid-cols-3 gap-2">
-                        <div className="h-20 border border-black/15 bg-[#D4D4CF]" />
-                        <div className="h-20 border border-black/15 bg-[#D4D4CF]" />
-                        <div className="h-20 border border-black/15 bg-[#D4D4CF]" />
+                        {["REPAIRS", "SERVICE", "CONTACT"].map((item) => (
+                            <div
+                                key={item}
+                                className="flex h-20 items-center justify-center border border-black/15 bg-[#D4D4CF] text-[8px] text-black/40"
+                            >
+                              {item}
+                            </div>
+                        ))}
+                      </div>
+
+                      <div className="mt-5 border-t border-black/10 pt-4">
+                        <p className="text-[8px] uppercase tracking-[0.16em] text-black/30">
+                          Generic identity · Limited functionality
+                        </p>
                       </div>
                     </div>
                   </div>
                 </div>
 
-
                 {/* AFTER */}
                 <div className="relative overflow-hidden p-6 md:p-10">
-                  <div className="absolute right-[-80px] top-[-80px] h-72 w-72 rounded-full bg-blue-600/15 blur-[100px]" />
+                  <div className="absolute right-[-80px] top-[-80px] h-72 w-72 rounded-full bg-red-600/15 blur-[100px]" />
 
                   <div className="relative mb-5 flex items-center justify-between">
-            <span className="text-xs uppercase tracking-[0.25em] text-blue-400">
-              After
-            </span>
+        <span className="text-xs uppercase tracking-[0.25em] text-red-400">
+          After
+        </span>
 
                     <span className="text-xs text-white/25">
-              FORMORA redesign
-            </span>
+          FORMORA transformation
+        </span>
                   </div>
 
-                  <div className="relative overflow-hidden rounded-[20px] border border-blue-500/20 bg-[#080A0D] shadow-[0_30px_80px_rgba(0,0,0,0.35)]">
+                  {/* NEW WEBSITE PREVIEW */}
+                  <div className="relative overflow-hidden rounded-[20px] border border-red-500/20 bg-[#080808] shadow-[0_30px_80px_rgba(0,0,0,0.4)]">
 
                     {/* MODERN BROWSER */}
-                    <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3">
+                    <div className="relative z-20 flex items-center gap-2 border-b border-white/10 bg-black/70 px-4 py-3 backdrop-blur">
                       <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
                       <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
                       <span className="h-2.5 w-2.5 rounded-full bg-white/15" />
 
                       <div className="ml-3 flex h-5 flex-1 items-center rounded-full border border-white/10 bg-white/[0.04] px-3">
-                <span className="text-[8px] text-white/20">
-                  autoservice.ro
-                </span>
+            <span className="text-[8px] text-white/20">
+              formora.ro/showcase/autoservice
+            </span>
                       </div>
                     </div>
 
-                    <div className="relative min-h-[310px] overflow-hidden p-6">
-                      <div className="absolute right-[-30px] top-10 h-48 w-48 rounded-full bg-blue-500/20 blur-[60px]" />
+                    <div className="relative min-h-[360px] overflow-hidden">
+                      <div
+                          className="absolute inset-0 scale-105 bg-cover bg-center opacity-55 transition duration-1000 group-hover:scale-100"
+                          style={{
+                            backgroundImage:
+                                "url('https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=1400&q=85')",
+                          }}
+                      />
 
-                      <div className="relative flex items-center justify-between">
-                        <div className="text-xs font-semibold tracking-[0.2em] text-white">
-                          MOTION
-                          <span className="text-blue-400">.</span>
+                      <div className="absolute inset-0 bg-black/50" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/20" />
+
+                      <div className="relative z-10 p-6">
+                        {/* MINI NAV */}
+                        <div className="flex items-center justify-between">
+                          <div className="text-sm font-black tracking-[-0.04em] text-white">
+                            APEX<span className="text-red-500">AUTO.</span>
+                          </div>
+
+                          <div className="hidden items-center gap-4 text-[7px] uppercase tracking-[0.12em] text-white/40 md:flex">
+                            <span>Services</span>
+                            <span>About</span>
+                            <span>Contact</span>
+
+                            <span className="bg-red-500 px-3 py-2 font-semibold text-white">
+                  Book service
+                </span>
+                          </div>
                         </div>
 
-                        <div className="hidden items-center gap-5 text-[8px] text-white/40 md:flex">
-                          <span>Services</span>
-                          <span>About</span>
-                          <span>Reviews</span>
+                        {/* MINI HERO */}
+                        <div className="mt-14 max-w-sm">
+                          <div className="mb-3 flex items-center gap-2">
+                            <span className="h-px w-6 bg-red-500" />
 
-                          <span className="rounded-full bg-blue-500 px-3 py-1.5 text-white">
-                    Book service
-                  </span>
-                        </div>
-                      </div>
+                            <p className="text-[8px] uppercase tracking-[0.25em] text-red-400">
+                              Automotive service
+                            </p>
+                          </div>
 
-                      <div className="relative mt-12 max-w-sm">
-                        <p className="mb-3 text-[8px] uppercase tracking-[0.3em] text-blue-400">
-                          Automotive care
-                        </p>
+                          <h4 className="text-4xl font-black leading-[0.82] tracking-[-0.06em] text-white md:text-5xl">
+                            DRIVE.
+                            <br />
+                            <span className="text-white/30">
+                  WE&apos;LL FIX.
+                </span>
+                          </h4>
 
-                        <h4 className="text-3xl font-semibold leading-[1.05] tracking-[-0.04em] text-white">
-                          Your car.
-                          <br />
-                          Our precision.
-                        </h4>
+                          <p className="mt-5 max-w-[270px] text-[10px] leading-4 text-white/40">
+                            Modern maintenance, diagnostics and repairs with transparent
+                            pricing and a simple online booking experience.
+                          </p>
 
-                        <p className="mt-4 max-w-xs text-[10px] leading-4 text-white/35">
-                          Professional diagnostics, maintenance and repair
-                          with transparent pricing and simple online booking.
-                        </p>
-
-                        <div className="mt-5 flex gap-2">
-                  <span className="rounded-full bg-blue-500 px-4 py-2 text-[8px] font-medium text-white">
-                    Book a service
-                  </span>
-
-                          <span className="rounded-full border border-white/10 px-4 py-2 text-[8px] text-white/60">
-                    Our services
-                  </span>
-                        </div>
-                      </div>
-
-                      <div className="absolute bottom-5 right-5 hidden w-36 rounded-xl border border-white/10 bg-white/[0.04] p-3 md:block">
-                        <div className="text-[8px] text-white/30">
-                          Customer rating
+                          <div className="mt-6 inline-flex items-center gap-2 bg-red-500 px-4 py-2.5 text-[8px] font-semibold uppercase tracking-[0.12em] text-white">
+                            Book service
+                            <span>↗</span>
+                          </div>
                         </div>
 
-                        <div className="mt-2 text-lg font-medium text-white">
-                          4.9
-                        </div>
-
-                        <div className="text-[8px] text-blue-400">
-                          ★★★★★
+                        <div className="absolute bottom-5 right-5 hidden rounded-full border border-white/15 bg-black/40 px-4 py-2 text-[8px] uppercase tracking-[0.15em] text-white/50 backdrop-blur md:block">
+                          Click to explore ↗
                         </div>
                       </div>
                     </div>
@@ -755,26 +791,199 @@ export default function Home() {
                 </div>
               </div>
 
-
-              {/* IMPROVEMENTS */}
-              <div className="grid border-t border-white/10 md:grid-cols-4">
+              {/* TRANSFORMATION */}
+              <div className="grid border-t border-white/10 sm:grid-cols-2 lg:grid-cols-4">
                 {[
-                  ["01", "Modern design"],
-                  ["02", "Mobile first"],
-                  ["03", "Clear conversion"],
-                  ["04", "Better user journey"],
+                  ["01", "Brand Strategy", "Clearer positioning"],
+                  ["02", "Visual Identity", "New automotive brand"],
+                  ["03", "Website", "Modern responsive UX"],
+                  ["04", "Conversion", "Booking & diagnostics"],
+                ].map(([number, title, text], index) => (
+                    <div
+                        key={number}
+                        className={`p-6 ${
+                            index !== 3
+                                ? "border-b border-white/10 sm:border-r lg:border-b-0"
+                                : ""
+                        }`}
+                    >
+          <span className="text-[10px] text-red-400">
+            {number}
+          </span>
+
+                      <p className="mt-3 text-sm font-medium text-white/70">
+                        {title}
+                      </p>
+
+                      <p className="mt-2 text-xs text-white/25">
+                        {text}
+                      </p>
+                    </div>
+                ))}
+              </div>
+
+              {/* CTA */}
+              <div className="flex flex-col gap-5 border-t border-white/10 bg-black/20 p-7 sm:flex-row sm:items-center sm:justify-between md:px-10">
+                <div>
+                  <p className="text-[9px] uppercase tracking-[0.22em] text-red-400">
+                    Rebrand · UX/UI · Development
+                  </p>
+
+                  <p className="mt-2 text-sm text-white/30">
+                    APEX AUTO — Automotive Service Showcase
+                  </p>
+                </div>
+
+                <div className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.04] px-5 py-3 text-[9px] font-medium uppercase tracking-[0.15em] text-white/60 transition group-hover:border-red-500/30 group-hover:bg-red-500 group-hover:text-white">
+                  Explore live website
+                  <span>↗</span>
+                </div>
+              </div>
+            </Link>
+
+
+            {/* NEXT PROJECTS */}
+
+            {/* LIVE SHOWCASE — NOIR */}
+            <article className="group relative mt-6 overflow-hidden rounded-[32px] border border-white/10 bg-[#0A0908] transition duration-500 hover:border-[#c8ab7c]/30">
+              <div className="grid min-h-[580px] lg:grid-cols-[0.9fr_1.1fr]">
+
+                {/* CONTENT */}
+                <div className="relative z-10 flex flex-col justify-between p-8 md:p-12 lg:p-14">
+                  <div>
+                    <div className="flex flex-wrap items-center gap-3">
+          <span className="text-xs uppercase tracking-[0.3em] text-[#c8ab7c]">
+            02 — Hospitality
+          </span>
+
+                      <span className="rounded-full border border-[#c8ab7c]/20 bg-[#c8ab7c]/[0.06] px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-[#c8ab7c]">
+            Live Showcase
+          </span>
+                    </div>
+
+                    <div className="mt-16">
+                      <p className="font-serif text-xl tracking-[0.25em] text-white/80">
+                        NOIR
+                      </p>
+
+                      <h3 className="mt-6 max-w-lg font-serif text-5xl font-light leading-[0.95] tracking-[-0.04em] text-white md:text-6xl">
+                        Taste
+                        <br />
+                        <span className="italic text-[#c8ab7c]">
+              the night.
+            </span>
+                      </h3>
+
+                      <p className="mt-7 max-w-md text-sm leading-7 text-white/40">
+                        A complete digital experience for a contemporary fine dining
+                        restaurant — designed to feel premium on every screen.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="mt-14">
+                    <a
+                        href="/showcase/noir"
+                        className="inline-flex items-center gap-4 rounded-full border border-[#c8ab7c]/40 bg-[#c8ab7c] px-6 py-3.5 text-xs font-medium text-black transition duration-300 hover:bg-[#e0c89f]"
+                    >
+                      Explore live website
+                      <span>↗</span>
+                    </a>
+
+                    <p className="mt-5 text-[10px] uppercase tracking-[0.2em] text-white/20">
+                      Interactive · Responsive · Live demo
+                    </p>
+                  </div>
+                </div>
+
+                {/* WEBSITE PREVIEW */}
+                <a
+                    href="/showcase/noir"
+                    aria-label="Explore NOIR live showcase"
+                    className="relative min-h-[480px] overflow-hidden border-t border-white/10 lg:min-h-full lg:border-l lg:border-t-0"
+                >
+                  <div
+                      className="absolute inset-0 scale-105 bg-cover bg-center transition duration-1000 group-hover:scale-100"
+                      style={{
+                        backgroundImage:
+                            "url('https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1600&q=85')",
+                      }}
+                  />
+
+                  <div className="absolute inset-0 bg-black/40" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#0A0908]/70 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
+
+                  {/* MOCK BROWSER */}
+                  <div className="absolute bottom-7 left-7 right-7 overflow-hidden rounded-[18px] border border-white/15 bg-black/60 shadow-2xl backdrop-blur-md md:bottom-10 md:left-10 md:right-10">
+                    <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3">
+                      <span className="h-2 w-2 rounded-full bg-white/20" />
+                      <span className="h-2 w-2 rounded-full bg-white/20" />
+                      <span className="h-2 w-2 rounded-full bg-white/20" />
+
+                      <div className="ml-3 flex h-5 flex-1 items-center rounded-full border border-white/10 bg-white/[0.05] px-3">
+            <span className="text-[7px] text-white/25">
+              formora.ro/showcase/noir
+            </span>
+                      </div>
+                    </div>
+
+                    <div className="relative h-[260px] overflow-hidden p-6 md:h-[310px] md:p-8">
+                      <div className="flex items-center justify-between">
+            <span className="font-serif text-sm tracking-[0.2em]">
+              NOIR
+            </span>
+
+                        <span className="border border-white/20 px-3 py-1.5 text-[7px] uppercase tracking-[0.15em] text-white/70">
+              Reserve
+            </span>
+                      </div>
+
+                      <div className="mt-12">
+                        <p className="text-[7px] uppercase tracking-[0.3em] text-[#c8ab7c]">
+                          Contemporary fine dining
+                        </p>
+
+                        <p className="mt-4 font-serif text-4xl font-light leading-[0.85] md:text-5xl">
+                          Taste
+                          <br />
+                          <span className="italic text-[#c8ab7c]">
+                the night.
+              </span>
+                        </p>
+                      </div>
+
+                      <div className="absolute bottom-6 right-6 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/[0.07] text-sm text-white transition duration-300 group-hover:bg-[#c8ab7c] group-hover:text-black">
+                        ↗
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="absolute right-7 top-7 rounded-full border border-white/15 bg-black/30 px-4 py-2 text-[9px] uppercase tracking-[0.2em] text-white/60 backdrop-blur-md">
+                    Click to explore
+                  </div>
+                </a>
+              </div>
+
+              {/* FEATURES */}
+              <div className="grid border-t border-white/10 sm:grid-cols-2 lg:grid-cols-4">
+                {[
+                  ["01", "Premium identity"],
+                  ["02", "Responsive design"],
+                  ["03", "Interactive experience"],
+                  ["04", "Conversion focused"],
                 ].map(([number, text], index) => (
                     <div
                         key={number}
                         className={`p-6 ${
                             index !== 3
-                                ? "border-b border-white/10 md:border-b-0 md:border-r"
+                                ? "border-b border-white/10 sm:border-r lg:border-b-0"
                                 : ""
                         }`}
                     >
-            <span className="text-[10px] text-blue-400">
-              {number}
-            </span>
+        <span className="text-[10px] text-[#c8ab7c]">
+          {number}
+        </span>
 
                       <p className="mt-2 text-sm text-white/55">
                         {text}
@@ -784,101 +993,187 @@ export default function Home() {
               </div>
             </article>
 
-
-            {/* NEXT PROJECTS */}
             <div className="mt-6 grid gap-6 md:grid-cols-2">
 
               {/* DENTAL */}
-              <article className="group rounded-[28px] border border-white/10 bg-white/[0.025] p-8 transition duration-500 hover:border-blue-500/30">
+              <Link
+                  href="/showcase/novadent"
+                  className="group block rounded-[28px] border border-white/10 bg-white/[0.025] p-8 transition duration-500 hover:border-blue-400/30 hover:bg-white/[0.04]"
+              >
                 <div className="flex items-center justify-between">
-          <span className="text-xs uppercase tracking-[0.25em] text-blue-400">
-            02 — Healthcare
-          </span>
+                  <div className="flex flex-wrap items-center gap-3">
+      <span className="text-xs uppercase tracking-[0.25em] text-blue-400">
+        03 — Healthcare
+      </span>
 
-                  <span className="text-xl text-white/30 transition group-hover:text-blue-400">
-            ↗
-          </span>
-                </div>
-
-                <div className="my-12 overflow-hidden rounded-2xl border border-white/10 bg-[#F2F5F7] p-5">
-                  <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold tracking-[0.15em] text-[#17202A]">
-              NOVA DENT
-            </span>
-
-                    <span className="rounded-full bg-[#17202A] px-3 py-1.5 text-[8px] text-white">
-              Appointment
-            </span>
+                    <span className="rounded-full border border-blue-400/20 bg-blue-400/[0.06] px-3 py-1 text-[9px] uppercase tracking-[0.18em] text-blue-300">
+        Live Showcase
+      </span>
                   </div>
 
-                  <div className="mt-10 max-w-xs">
-                    <div className="text-2xl font-medium leading-tight text-[#17202A]">
-                      Modern dentistry.
-                      <br />
-                      Human care.
+                  <span className="text-xl text-white/30 transition duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-blue-300">
+      ↗
+    </span>
+                </div>
+
+                {/* WEBSITE PREVIEW */}
+                <div className="relative my-12 overflow-hidden rounded-2xl border border-white/10 bg-[#EEF5FF]">
+                  <div
+                      className="absolute inset-0 scale-105 bg-cover bg-center opacity-40 transition duration-700 group-hover:scale-100"
+                      style={{
+                        backgroundImage:
+                            "url('https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=1200&q=85')",
+                      }}
+                  />
+
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#EEF5FF] via-[#EEF5FF]/90 to-[#EEF5FF]/30" />
+
+                  <div className="relative min-h-[250px] p-6">
+                    {/* MINI NAV */}
+                    <div className="flex items-center justify-between">
+        <span className="text-xs font-semibold tracking-[-0.03em] text-[#10223D]">
+          NOVA<span className="text-[#4B8DFF]">DENT</span>
+        </span>
+
+                      <span className="hidden text-[8px] text-[#10223D]/35 sm:block">
+          About · Treatments · Technology · Contact
+        </span>
                     </div>
 
-                    <div className="mt-5 h-2 w-32 rounded bg-black/10" />
-                    <div className="mt-2 h-2 w-24 rounded bg-black/10" />
+                    {/* MINI HERO */}
+                    <div className="mt-12 max-w-xs">
+                      <p className="mb-3 text-[8px] font-semibold uppercase tracking-[0.22em] text-[#4B8DFF]">
+                        Modern dental care
+                      </p>
+
+                      <div className="text-3xl font-medium leading-[0.95] tracking-[-0.05em] text-[#10223D]">
+                        Your smile,
+                        <br />
+                        <span className="text-[#4B8DFF]">
+            reimagined.
+          </span>
+                      </div>
+
+                      <p className="mt-4 max-w-[220px] text-[9px] leading-4 text-[#10223D]/45">
+                        Modern dentistry built around comfort, precision and natural results.
+                      </p>
+
+                      <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#4B8DFF] px-4 py-2 text-[8px] font-semibold uppercase tracking-[0.1em] text-white">
+                        Explore website
+                        <span>↗</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                <p className="text-xs uppercase tracking-[0.25em] text-white/25">
-                  Concept Redesign
+                <p className="text-xs uppercase tracking-[0.25em] text-blue-400">
+                  Interactive website
                 </p>
 
-                <h3 className="mt-3 text-2xl font-medium">
-                  Dental Clinic
-                </h3>
-              </article>
+                <div className="mt-3 flex items-end justify-between gap-5">
+                  <div>
+                    <h3 className="text-2xl font-medium">
+                      NOVA DENT
+                    </h3>
 
+                    <p className="mt-2 text-sm text-white/30">
+                      Modern dental clinic showcase
+                    </p>
+                  </div>
+
+                  <span className="hidden text-[10px] uppercase tracking-[0.18em] text-white/25 sm:block">
+      Explore live →
+    </span>
+                </div>
+              </Link>
 
               {/* CONSTRUCTION */}
-              <article className="group rounded-[28px] border border-white/10 bg-white/[0.025] p-8 transition duration-500 hover:border-blue-500/30">
+
+              <Link
+                  href="/showcase/northbuild"
+                  className="group block rounded-[28px] border border-white/10 bg-white/[0.025] p-8 transition duration-500 hover:border-[#FF5C35]/35 hover:bg-white/[0.035]"
+              >
                 <div className="flex items-center justify-between">
-          <span className="text-xs uppercase tracking-[0.25em] text-blue-400">
-            03 — Construction
-          </span>
+                  <div className="flex flex-wrap items-center gap-3">
+      <span className="text-xs uppercase tracking-[0.25em] text-blue-400">
+        04 — Construction
+      </span>
 
-                  <span className="text-xl text-white/30 transition group-hover:text-blue-400">
-            ↗
-          </span>
-                </div>
-
-                <div className="relative my-12 overflow-hidden rounded-2xl border border-white/10 bg-[#17191D] p-5">
-                  <div className="absolute right-[-30px] top-[-30px] h-32 w-32 rounded-full bg-blue-500/20 blur-[40px]" />
-
-                  <div className="relative flex items-center justify-between">
-            <span className="text-xs font-semibold tracking-[0.15em]">
-              NORTHBUILD
-            </span>
-
-                    <span className="text-[8px] text-white/35">
-              Projects · Services · Contact
-            </span>
+                    <span className="rounded-full border border-[#FF5C35]/20 bg-[#FF5C35]/[0.06] px-3 py-1 text-[9px] uppercase tracking-[0.18em] text-[#FF7655]">
+        Live Showcase
+      </span>
                   </div>
 
-                  <div className="relative mt-10 max-w-xs">
-                    <div className="text-2xl font-medium leading-tight">
-                      Built to last.
-                      <br />
-                      Designed for today.
+                  <span className="text-xl text-white/30 transition duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-[#FF7655]">
+      ↗
+    </span>
+                </div>
+
+                <div className="relative my-12 overflow-hidden rounded-2xl border border-white/10 bg-[#17191D]">
+                  <div
+                      className="absolute inset-0 scale-105 bg-cover bg-center opacity-55 transition duration-700 group-hover:scale-100"
+                      style={{
+                        backgroundImage:
+                            "url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=85')",
+                      }}
+                  />
+
+                  <div className="absolute inset-0 bg-black/45" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/35 to-transparent" />
+
+                  <div className="relative min-h-[250px] p-6">
+                    <div className="flex items-center justify-between">
+        <span className="text-xs font-semibold tracking-[0.15em] text-white">
+          NORTHBUILD
+          <span className="text-[#FF5C35]">.</span>
+        </span>
+
+                      <span className="hidden text-[8px] text-white/35 sm:block">
+          Projects · Studio · Services · Contact
+        </span>
                     </div>
 
-                    <div className="mt-5 inline-block rounded-full bg-blue-500 px-4 py-2 text-[8px]">
-                      Start a project
+                    <div className="mt-12 max-w-xs">
+                      <p className="mb-3 text-[8px] uppercase tracking-[0.28em] text-[#FF7655]">
+                        Architecture · Construction
+                      </p>
+
+                      <div className="text-3xl font-semibold leading-[0.95] tracking-[-0.05em] text-white">
+                        WE BUILD
+                        <br />
+                        <span className="text-white/40">
+            FORWARD.
+          </span>
+                      </div>
+
+                      <div className="mt-6 inline-flex items-center gap-2 border border-[#FF5C35]/40 bg-[#FF5C35] px-4 py-2 text-[8px] font-medium uppercase tracking-[0.12em] text-black">
+                        Explore website
+                        <span>↗</span>
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                <p className="text-xs uppercase tracking-[0.25em] text-white/25">
-                  Concept Redesign
+                <p className="text-xs uppercase tracking-[0.25em] text-[#FF7655]">
+                  Interactive website
                 </p>
 
-                <h3 className="mt-3 text-2xl font-medium">
-                  Construction Company
-                </h3>
-              </article>
+                <div className="mt-3 flex items-end justify-between gap-5">
+                  <div>
+                    <h3 className="text-2xl font-medium">
+                      Construction Company
+                    </h3>
+
+                    <p className="mt-2 text-sm text-white/30">
+                      Architecture & construction showcase
+                    </p>
+                  </div>
+
+                  <span className="hidden text-[10px] uppercase tracking-[0.18em] text-white/25 sm:block">
+      Explore live →
+    </span>
+                </div>
+              </Link>
             </div>
           </div>
         </section>
