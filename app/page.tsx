@@ -1,11 +1,20 @@
+"use client";
+
+import { useState } from "react";
 import QuoteForm from "./components/QuoteForm";
 
 export default function Home() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
       <main className="min-h-screen bg-[#0B0B0D] text-white">
-        <header className="fixed top-0 left-0 z-50 w-full border-b border-white/10 bg-black/30 backdrop-blur-xl">
+        <header className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-black/30 backdrop-blur-xl">
           <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
-            <a href="#" className="text-2xl font-semibold tracking-[0.2em]">
+            <a
+                href="#"
+                className="text-2xl font-semibold tracking-[0.2em]"
+                onClick={() => setMobileMenuOpen(false)}
+            >
               FORMORA
             </a>
 
@@ -27,17 +36,89 @@ export default function Home() {
             <div className="flex items-center gap-3">
               <a
                   href="/client/login"
-                  className="hidden rounded-full border border-white/15 px-5 py-2.5 text-sm font-medium text-white/80 transition hover:border-blue-500/50 hover:bg-blue-500/10 hover:text-white sm:inline-flex"
+                  className="hidden rounded-full border border-white/10 px-5 py-3 text-sm text-white/70 transition hover:border-white/20 hover:text-white sm:inline-flex"
               >
                 Client Portal
               </a>
 
               <a
                   href="#contact"
-                  className="rounded-full border border-white/15 bg-white px-5 py-2.5 text-sm font-medium text-black transition hover:scale-[1.03]"
+                  className="hidden rounded-full bg-white px-5 py-3 text-sm font-medium text-black transition hover:bg-white/90 sm:inline-flex"
               >
                 Start a project
               </a>
+
+              <button
+                  type="button"
+                  onClick={() => setMobileMenuOpen((open) => !open)}
+                  className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white transition hover:border-white/20 md:hidden"
+                  aria-label="Toggle mobile menu"
+                  aria-expanded={mobileMenuOpen}
+              >
+              <span className="relative h-4 w-5">
+                <span
+                    className={`absolute left-0 top-0 h-[1.5px] w-5 bg-white transition-all duration-300 ${
+                        mobileMenuOpen ? "translate-y-[7px] rotate-45" : ""
+                    }`}
+                />
+                <span
+                    className={`absolute left-0 top-[7px] h-[1.5px] w-5 bg-white transition-all duration-300 ${
+                        mobileMenuOpen ? "opacity-0" : ""
+                    }`}
+                />
+                <span
+                    className={`absolute left-0 top-[14px] h-[1.5px] w-5 bg-white transition-all duration-300 ${
+                        mobileMenuOpen ? "-translate-y-[7px] -rotate-45" : ""
+                    }`}
+                />
+              </span>
+              </button>
+            </div>
+          </div>
+
+          <div
+              className={`overflow-hidden border-t border-white/10 bg-[#0B0B0D]/95 backdrop-blur-2xl transition-all duration-300 md:hidden ${
+                  mobileMenuOpen
+                      ? "max-h-[520px] opacity-100"
+                      : "max-h-0 border-transparent opacity-0"
+              }`}
+          >
+            <div className="mx-auto max-w-7xl px-6 py-6">
+              <nav className="flex flex-col">
+                {[
+                  ["Services", "#services"],
+                  ["Projects", "#projects"],
+                  ["About", "#about"],
+                  ["Contact", "#contact"],
+                ].map(([label, href]) => (
+                    <a
+                        key={label}
+                        href={href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="border-b border-white/10 py-4 text-lg text-white/80 transition hover:text-white"
+                    >
+                      {label}
+                    </a>
+                ))}
+              </nav>
+
+              <div className="mt-6 grid gap-3">
+                <a
+                    href="/client/login"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center justify-center rounded-full border border-white/10 px-5 py-3.5 text-sm text-white/80"
+                >
+                  Client Portal
+                </a>
+
+                <a
+                    href="#contact"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center justify-center rounded-full bg-blue-500 px-5 py-3.5 text-sm font-medium text-white"
+                >
+                  Start a project
+                </a>
+              </div>
             </div>
           </div>
         </header>
@@ -903,26 +984,73 @@ export default function Home() {
           </div>
         </section>
         <QuoteForm />
-        <footer className="border-t border-white/10 bg-[#08080A] px-6 py-10">
-          <div className="mx-auto flex max-w-7xl flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <div className="text-sm font-semibold tracking-[0.2em] text-white">
-                FORMORA
+        <footer className="border-t border-white/10 bg-[#08080A]">
+          <div className="mx-auto max-w-7xl px-6 py-12">
+            <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
+
+              <div>
+                <a
+                    href="#"
+                    className="text-xl font-semibold tracking-[0.2em] text-white"
+                >
+                  FORMORA
+                </a>
+
+                <p className="mt-4 max-w-sm text-sm leading-6 text-white/35">
+                  Digital ideas. Made real.
+                </p>
+
+                <p className="mt-2 text-xs text-white/20">
+                  Web Development · 3D Scanning · 3D Printing
+                </p>
               </div>
 
-              <p className="mt-2 text-xs text-white/30">
-                Digital ideas. Made real.
-              </p>
+              <div className="flex flex-wrap gap-x-7 gap-y-3 text-sm text-white/40">
+                <a
+                    href="#services"
+                    className="transition hover:text-white"
+                >
+                  Services
+                </a>
+
+                <a
+                    href="#projects"
+                    className="transition hover:text-white"
+                >
+                  Projects
+                </a>
+
+                <a
+                    href="#about"
+                    className="transition hover:text-white"
+                >
+                  About
+                </a>
+
+                <a
+                    href="#contact"
+                    className="transition hover:text-white"
+                >
+                  Contact
+                </a>
+
+                <a
+                    href="/client/login"
+                    className="transition hover:text-white"
+                >
+                  Client Portal
+                </a>
+              </div>
             </div>
 
-            <div className="flex items-center gap-6 text-xs text-white/30">
-            <span>
-                © {new Date().getFullYear()} FORMORA
-            </span>
+            <div className="mt-10 flex flex-col gap-4 border-t border-white/[0.08] pt-6 text-xs text-white/20 sm:flex-row sm:items-center sm:justify-between">
+              <p>
+                © {new Date().getFullYear()} FORMORA. All rights reserved.
+              </p>
 
               <a
                   href="/admin/login"
-                  className="transition hover:text-white/60"
+                  className="transition hover:text-white/50"
               >
                 Admin
               </a>
