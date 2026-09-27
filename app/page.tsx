@@ -7,6 +7,7 @@ import Link from "next/link";
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // @ts-ignore
   return (
       <main className="min-h-screen bg-[#0B0B0D] text-white">
         <header className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-black/30 backdrop-blur-xl">
@@ -1175,6 +1176,203 @@ export default function Home() {
                 </div>
               </Link>
             </div>
+            {/* PROJECT 05 — NØRVA E-COMMERCE */}
+            <Link
+                href="/showcase/norva"
+                className="group relative mt-6 block overflow-hidden rounded-[32px] border border-white/10 bg-[#F3EEE4] text-[#171512] transition duration-500 hover:border-[#B89A63]/50"
+            >
+              <div className="grid min-h-[620px] lg:grid-cols-[0.9fr_1.1fr]">
+
+                {/* CONTENT */}
+                <div className="relative z-10 flex flex-col justify-between p-8 md:p-12 lg:p-14">
+                  <div>
+                    <div className="flex flex-wrap items-center gap-3">
+          <span className="text-xs uppercase tracking-[0.3em] text-[#9B7A43]">
+            05 — E-commerce
+          </span>
+
+                      <span className="rounded-full border border-[#B89A63]/30 bg-[#B89A63]/10 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-[#8A6A36]">
+            Live Showcase
+          </span>
+
+                      <span className="rounded-full border border-black/10 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-black/40">
+            Full-stack
+          </span>
+                    </div>
+
+                    <div className="mt-20">
+                      <p className="text-xl font-medium tracking-[0.35em] text-[#171512]">
+                        NØRVA
+                      </p>
+
+                      <p className="mt-3 text-[9px] uppercase tracking-[0.3em] text-[#9B7A43]">
+                        Copenhagen · Objects for living
+                      </p>
+
+                      <h3 className="mt-8 max-w-lg text-5xl font-light leading-[0.92] tracking-[-0.05em] md:text-6xl">
+                        Designed
+                        <br />
+                        <span className="font-serif italic text-[#A48654]">
+              to be lived with.
+            </span>
+                      </h3>
+
+                      <p className="mt-7 max-w-md text-sm leading-7 text-black/50">
+                        A complete premium e-commerce experience with dynamic
+                        products, persistent cart, secure checkout and integrated
+                        payment flow.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="mt-14">
+                    <div className="inline-flex items-center gap-4 bg-[#171512] px-7 py-4 text-[10px] font-medium uppercase tracking-[0.18em] text-[#F3EEE4] transition duration-300 group-hover:bg-[#A48654]">
+                      Explore live store
+                      <span className="text-base transition duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-1">
+            ↗
+          </span>
+                    </div>
+
+                    <p className="mt-5 text-[9px] uppercase tracking-[0.2em] text-black/30">
+                      Interactive · Database · Cart · Stripe Checkout
+                    </p>
+                  </div>
+                </div>
+
+                {/* STORE PREVIEW */}
+                <div className="relative min-h-[520px] overflow-hidden border-t border-black/10 bg-[#E9E1D3] lg:min-h-full lg:border-l lg:border-t-0">
+
+                  {/* BACKGROUND */}
+                  <div
+                      className="absolute inset-0 scale-105 bg-cover bg-center transition duration-1000 group-hover:scale-100"
+                      style={{
+                        backgroundImage:
+                            "url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1600&q=85')",
+                      }}
+                  />
+
+                  <div className="absolute inset-0 bg-[#E9E1D3]/20" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#F3EEE4]/45 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-white/10" />
+
+                  {/* BROWSER PREVIEW */}
+                  <div className="absolute bottom-7 left-7 right-7 overflow-hidden rounded-[18px] border border-white/40 bg-[#F7F4EE]/95 shadow-[0_30px_80px_rgba(0,0,0,0.18)] backdrop-blur-md md:bottom-10 md:left-10 md:right-10">
+
+                    {/* BROWSER BAR */}
+                    <div className="flex items-center gap-2 border-b border-black/10 px-4 py-3">
+                      <span className="h-2 w-2 rounded-full bg-black/15" />
+                      <span className="h-2 w-2 rounded-full bg-black/15" />
+                      <span className="h-2 w-2 rounded-full bg-black/15" />
+
+                      <div className="ml-3 flex h-5 flex-1 items-center rounded-full border border-black/10 bg-white/50 px-3">
+            <span className="text-[7px] text-black/30">
+              formora.ro/showcase/norva
+            </span>
+                      </div>
+                    </div>
+
+                    {/* MINI STORE */}
+                    <div className="relative min-h-[320px] overflow-hidden bg-[#F7F4EE] p-6 md:p-8">
+
+                      {/* MINI NAV */}
+                      <div className="flex items-center justify-between">
+            <span className="text-xs font-medium tracking-[0.3em] text-[#171512]">
+              NØRVA
+            </span>
+
+                        <div className="hidden items-center gap-4 text-[7px] uppercase tracking-[0.15em] text-black/35 sm:flex">
+                          <span>Collection</span>
+                          <span>Journal</span>
+                          <span>Bag (0)</span>
+                        </div>
+                      </div>
+
+                      {/* MINI HERO */}
+                      <div className="mt-12 max-w-sm">
+                        <p className="text-[7px] uppercase tracking-[0.3em] text-[#A48654]">
+                          The new collection
+                        </p>
+
+                        <div className="mt-4 text-4xl font-light leading-[0.9] tracking-[-0.05em] text-[#171512] md:text-5xl">
+                          Quiet forms.
+                          <br />
+                          <span className="font-serif italic text-[#A48654]">
+                Lasting objects.
+              </span>
+                        </div>
+
+                        <p className="mt-5 max-w-[260px] text-[9px] leading-4 text-black/40">
+                          Furniture and objects shaped by natural materials,
+                          thoughtful proportions and everyday life.
+                        </p>
+
+                        <div className="mt-6 inline-flex bg-[#171512] px-4 py-2.5 text-[7px] uppercase tracking-[0.15em] text-[#F7F4EE]">
+                          Shop collection
+                        </div>
+                      </div>
+
+                      {/* DECORATIVE PRODUCT CARDS */}
+                      <div className="absolute bottom-6 right-6 hidden gap-2 md:flex">
+                        <div className="h-20 w-16 border border-black/10 bg-[#E9E1D3]" />
+                        <div className="h-20 w-16 border border-black/10 bg-[#DED3C1]" />
+                        <div className="h-20 w-16 border border-black/10 bg-[#D2C3AC]" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* CLICK BADGE */}
+                  <div className="absolute right-7 top-7 rounded-full border border-white/50 bg-[#F7F4EE]/80 px-4 py-2 text-[9px] uppercase tracking-[0.2em] text-black/50 backdrop-blur-md">
+                    Click to explore
+                  </div>
+                </div>
+              </div>
+
+              {/* TECH / FEATURES */}
+              <div className="grid border-t border-black/10 sm:grid-cols-2 lg:grid-cols-5">
+                {[
+                  ["01", "Dynamic products"],
+                  ["02", "Supabase database"],
+                  ["03", "Persistent cart"],
+                  ["04", "Secure checkout"],
+                  ["05", "Stripe payments"],
+                ].map(([number, text], index) => (
+                    <div
+                        key={number}
+                        className={`p-6 ${
+                            index !== 4
+                                ? "border-b border-black/10 sm:border-r lg:border-b-0"
+                                : ""
+                        }`}
+                    >
+        <span className="text-[10px] text-[#A48654]">
+          {number}
+        </span>
+
+                      <p className="mt-2 text-sm text-black/55">
+                        {text}
+                      </p>
+                    </div>
+                ))}
+              </div>
+
+              {/* BOTTOM CTA */}
+              <div className="flex flex-col gap-5 border-t border-black/10 bg-[#EDE6DA] p-7 sm:flex-row sm:items-center sm:justify-between md:px-10">
+                <div>
+                  <p className="text-[9px] uppercase tracking-[0.22em] text-[#9B7A43]">
+                    UX/UI · Development · Database · Payments
+                  </p>
+
+                  <p className="mt-2 text-sm text-black/40">
+                    NØRVA — Premium E-commerce Showcase
+                  </p>
+                </div>
+
+                <div className="inline-flex items-center gap-3 border border-black/10 bg-[#171512] px-5 py-3 text-[9px] font-medium uppercase tracking-[0.15em] text-[#F7F4EE] transition duration-300 group-hover:bg-[#A48654]">
+                  Explore live store
+                  <span>↗</span>
+                </div>
+              </div>
+            </Link>
           </div>
         </section>
         {/* WHY FORMORA */}
