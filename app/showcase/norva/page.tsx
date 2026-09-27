@@ -379,6 +379,22 @@ export default async function NorvaPage() {
                     </div>
                 </div>
             </section>
+            {/* FOOTER */}
+            <footer className="border-t border-black/10 bg-[#F7F4EE] px-8 py-8 md:px-14 lg:px-20">
+                <div className="flex flex-col gap-4 text-[9px] tracking-[0.18em] text-black/30 sm:flex-row sm:items-center sm:justify-between">
+                    <p>
+                        © 2026 NØRVA · COPENHAGEN
+                    </p>
+
+                    <Link
+                        href="/admin/norva/login"
+                        className="w-fit transition-colors hover:text-[#A48654]"
+                    >
+                        ADMIN
+                    </Link>
+                </div>
+            </footer>
+
 
         </main>
     );
