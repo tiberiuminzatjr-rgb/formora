@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useCart } from "../../components/CartProvider";
@@ -10,7 +10,7 @@ type VerificationState =
     | "success"
     | "failed";
 
-export default function CheckoutSuccessPage() {
+function CheckoutSuccessContent() {
     const searchParams = useSearchParams();
     const { clearCart } = useCart();
 
@@ -60,7 +60,7 @@ export default function CheckoutSuccessPage() {
                     );
                 }
 
-                // Only clear the bag AFTER Stripe confirms payment.
+                // Clear the bag only after Stripe confirms payment.
                 clearCart();
 
                 setStatus("success");
@@ -254,5 +254,27 @@ export default function CheckoutSuccessPage() {
                 </div>
             </section>
         </main>
+    );
+}
+
+/* ---------------- SUSPENSE WRAPPER ---------------- */
+
+export default function CheckoutSuccessPage() {
+    return (
+        <Suspense
+            fallback={
+                <main className="flex min-h-screen items-center justify-center bg-[#F7F4EE] text-[#1B1B1B]">
+                    <div className="text-center">
+                        <div className="mx-auto h-12 w-12 animate-spin rounded-full border border-black/15 border-t-[#A48654]" />
+
+                        <p className="mt-8 text-[10px] tracking-[0.28em] text-[#A48654]">
+                            VERIFYING PAYMENT
+                        </p>
+                    </div>
+                </main>
+            }
+        >
+            <CheckoutSuccessContent />
+        </Suspense>
     );
 }
