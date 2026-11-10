@@ -3,11 +3,15 @@
 import { useState } from "react";
 import QuoteForm from "./components/QuoteForm";
 import Link from "next/link";
+import LanguageSwitcher from "./components/LanguageSwitcher";
+import { useLanguage } from "./components/LanguageProvider";
+import { pageTranslations } from "../lib/page-translations";
 
 export default function Home() {
+  const { t, language } = useLanguage();
+  const tx = (key: keyof typeof pageTranslations.en) => pageTranslations[language][key];
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // @ts-ignore
   return (
       <main className="min-h-screen bg-[#0B0B0D] text-white">
         <header className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-black/30 backdrop-blur-xl">
@@ -21,40 +25,31 @@ export default function Home() {
             </a>
 
             <nav className="hidden items-center gap-8 text-sm text-white/70 md:flex">
-              <a href="#services" className="transition hover:text-white">
-                Services
-              </a>
-              <a href="#projects" className="transition hover:text-white">
-                Projects
-              </a>
-              <a href="#about" className="transition hover:text-white">
-                About
-              </a>
+              <a href="#services" className="transition hover:text-white">{tx("Services")}</a>
+              <a href="#projects" className="transition hover:text-white">{tx("Projects")}</a>
+              <a href="#about" className="transition hover:text-white">{tx("About")}</a>
               <a href="#contact" className="transition hover:text-white">
                 Contact
               </a>
             </nav>
 
             <div className="flex items-center gap-3">
+              <LanguageSwitcher />
               <a
                   href="/client/login"
                   className="hidden rounded-full border border-white/10 px-5 py-3 text-sm text-white/70 transition hover:border-white/20 hover:text-white sm:inline-flex"
-              >
-                Client Portal
-              </a>
+              >{tx("Client Portal")}</a>
 
               <a
                   href="#contact"
                   className="hidden rounded-full bg-white px-5 py-3 text-sm font-medium text-black transition hover:bg-white/90 sm:inline-flex"
-              >
-                Start a project
-              </a>
+              >{tx("Start a project")}</a>
 
               <button
                   type="button"
                   onClick={() => setMobileMenuOpen((open) => !open)}
                   className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-white transition hover:border-white/20 md:hidden"
-                  aria-label="Toggle mobile menu"
+                  aria-label={tx("Toggle mobile menu")}
                   aria-expanded={mobileMenuOpen}
               >
               <span className="relative h-4 w-5">
@@ -88,10 +83,10 @@ export default function Home() {
             <div className="mx-auto max-w-7xl px-6 py-6">
               <nav className="flex flex-col">
                 {[
-                  ["Services", "#services"],
-                  ["Projects", "#projects"],
-                  ["About", "#about"],
-                  ["Contact", "#contact"],
+                  [t.nav.services, "#services"],
+                  [t.nav.projects, "#projects"],
+                  [t.nav.about, "#about"],
+                  [t.nav.contact, "#contact"],
                 ].map(([label, href]) => (
                     <a
                         key={label}
@@ -109,17 +104,13 @@ export default function Home() {
                     href="/client/login"
                     onClick={() => setMobileMenuOpen(false)}
                     className="flex items-center justify-center rounded-full border border-white/10 px-5 py-3.5 text-sm text-white/80"
-                >
-                  Client Portal
-                </a>
+                >{tx("Client Portal")}</a>
 
                 <a
                     href="#contact"
                     onClick={() => setMobileMenuOpen(false)}
                     className="flex items-center justify-center rounded-full bg-blue-500 px-5 py-3.5 text-sm font-medium text-white"
-                >
-                  Start a project
-                </a>
+                >{tx("Start a project")}</a>
               </div>
             </div>
           </div>
@@ -133,35 +124,30 @@ export default function Home() {
 
           <div className="relative z-10 mx-auto grid w-full max-w-7xl gap-16 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
             <div>
-              <p className="mb-6 text-sm uppercase tracking-[0.35em] text-blue-400">
-                Web Development · 3D Scanning · 3D Printing
-              </p>
+              <p className="mb-6 text-sm uppercase tracking-[0.35em] text-blue-400">{tx("Web Development · 3D Scanning · 3D Printing")}</p>
 
               <h1 className="max-w-5xl text-5xl font-semibold leading-[0.95] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
-                Digital ideas.
+                {t.hero.title}
                 <br />
-                <span className="text-white/45">Made real.</span>
+                <span className="text-white/45">
+    {t.hero.highlight}
+  </span>
               </h1>
 
               <p className="mt-8 max-w-2xl text-base leading-8 text-white/60 sm:text-lg">
-                We build modern digital experiences and turn physical ideas into
-                precise, functional objects.
+                {t.hero.description}
               </p>
 
               <div className="mt-10 flex flex-wrap gap-4">
                 <a
                     href="#contact"
                     className="rounded-full bg-blue-500 px-7 py-3.5 text-sm font-semibold text-white transition hover:scale-[1.03] hover:bg-blue-400"
-                >
-                  Start a project
-                </a>
+                >{tx("Start a project")}</a>
 
                 <a
                     href="#services"
                     className="rounded-full border border-white/15 px-7 py-3.5 text-sm font-semibold text-white transition hover:border-white/30 hover:bg-white/5"
-                >
-                  Explore services
-                </a>
+                >{tx("Explore services")}</a>
               </div>
             </div>
 
@@ -181,9 +167,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-xs uppercase tracking-[0.35em] text-white/30">
-            Scroll to explore
-          </div>
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-xs uppercase tracking-[0.35em] text-white/30">{tx("Scroll to explore")}</div>
         </section>
         <section
             id="services"
@@ -194,23 +178,14 @@ export default function Home() {
           <div className="relative mx-auto max-w-7xl">
             <div className="mb-24 grid gap-10 lg:grid-cols-[1fr_0.6fr] lg:items-end">
               <div>
-                <p className="mb-5 text-xs uppercase tracking-[0.35em] text-blue-400">
-                  What we do
-                </p>
+                <p className="mb-5 text-xs uppercase tracking-[0.35em] text-blue-400">{tx("What we do")}</p>
 
-                <h2 className="max-w-4xl text-4xl font-semibold tracking-[-0.04em] sm:text-5xl md:text-6xl">
-                  One studio.
-                  <br />
-                  <span className="text-white/35">
-            Digital and physical.
-          </span>
+                <h2 className="max-w-4xl text-4xl font-semibold tracking-[-0.04em] sm:text-5xl md:text-6xl">{tx("One studio.")}<br />
+                  <span className="text-white/35">{tx("Digital and physical.")}</span>
                 </h2>
               </div>
 
-              <p className="max-w-md text-base leading-7 text-white/45">
-                FORMORA combines digital experiences, reverse engineering and
-                additive manufacturing into one complete workflow.
-              </p>
+              <p className="max-w-md text-base leading-7 text-white/45">{tx("FORMORA combines digital experiences, reverse engineering and additive manufacturing into one complete workflow.")}</p>
             </div>
 
             {/* WEB DEVELOPMENT */}
@@ -221,27 +196,18 @@ export default function Home() {
             01
           </span>
 
-                  <span className="rounded-full border border-white/10 px-4 py-2 text-xs uppercase tracking-[0.25em] text-blue-400">
-            Digital
-          </span>
+                  <span className="rounded-full border border-white/10 px-4 py-2 text-xs uppercase tracking-[0.25em] text-blue-400">{tx("Digital")}</span>
                 </div>
 
                 <div>
-                  <h3 className="text-4xl font-medium tracking-[-0.03em] md:text-5xl">
-                    Web Development
-                  </h3>
+                  <h3 className="text-4xl font-medium tracking-[-0.03em] md:text-5xl">{tx("Web Development")}</h3>
 
-                  <p className="mt-6 max-w-lg text-base leading-7 text-white/45">
-                    We build and redesign modern websites for businesses that
-                    want a stronger, faster and more credible digital presence.
-                  </p>
+                  <p className="mt-6 max-w-lg text-base leading-7 text-white/45">{tx("We build and redesign modern websites for businesses that want a stronger, faster and more credible digital presence.")}</p>
 
                   <a
                       href="#contact"
                       className="mt-8 inline-flex items-center gap-3 text-sm text-white transition group-hover:text-blue-400"
-                  >
-                    Explore Web Development
-                    <span>↗</span>
+                  >{tx("Explore Web Development")}<span>↗</span>
                   </a>
                 </div>
               </div>
@@ -257,29 +223,19 @@ export default function Home() {
                       <span className="h-2.5 w-2.5 rounded-full bg-white/20" />
                     </div>
 
-                    <span className="text-[10px] uppercase tracking-[0.3em] text-white/25">
-              Website redesign
-            </span>
+                    <span className="text-[10px] uppercase tracking-[0.3em] text-white/25">{tx("Website redesign")}</span>
                   </div>
 
                   <div className="p-8">
-                    <p className="mb-5 text-xs uppercase tracking-[0.28em] text-blue-400">
-                      Before → After
-                    </p>
+                    <p className="mb-5 text-xs uppercase tracking-[0.28em] text-blue-400">{tx("Before → After")}</p>
 
-                    <h4 className="max-w-md text-4xl font-medium leading-tight text-white">
-                      Outdated online presence.
-                      <br />
-                      <span className="text-white/35">
-                Rebuilt for today.
-              </span>
+                    <h4 className="max-w-md text-4xl font-medium leading-tight text-white">{tx("Outdated online presence.")}<br />
+                      <span className="text-white/35">{tx("Rebuilt for today.")}</span>
                     </h4>
 
                     <div className="mt-10 grid grid-cols-2 gap-4">
                       <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
-                <span className="text-xs uppercase tracking-[0.2em] text-white/25">
-                  Before
-                </span>
+                <span className="text-xs uppercase tracking-[0.2em] text-white/25">{tx("Before")}</span>
 
                         <div className="mt-6 space-y-3">
                           <div className="h-4 w-2/3 rounded bg-white/10" />
@@ -290,9 +246,7 @@ export default function Home() {
                       </div>
 
                       <div className="rounded-2xl border border-blue-500/30 bg-blue-500/[0.06] p-4">
-                <span className="text-xs uppercase tracking-[0.2em] text-blue-400">
-                  After
-                </span>
+                <span className="text-xs uppercase tracking-[0.2em] text-blue-400">{tx("After")}</span>
 
                         <div className="mt-6">
                           <div className="h-4 w-1/2 rounded bg-white/70" />
@@ -319,22 +273,18 @@ export default function Home() {
                 <div className="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 -rotate-6 rounded-[30%] border border-white/10 bg-white/[0.035]" />
 
                 <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-center">
-                  <p className="text-xs uppercase tracking-[0.4em] text-blue-400">
-                    Physical
-                  </p>
+                  <p className="text-xs uppercase tracking-[0.4em] text-blue-400">{tx("Physical")}</p>
 
                   <div className="my-4 text-6xl font-semibold tracking-[-0.06em]">
                     →
                   </div>
 
-                  <p className="text-xs uppercase tracking-[0.4em] text-white/45">
-                    Digital
-                  </p>
+                  <p className="text-xs uppercase tracking-[0.4em] text-white/45">{tx("Digital")}</p>
                 </div>
 
                 <div className="absolute bottom-8 left-8 right-8 flex justify-between text-[10px] uppercase tracking-[0.25em] text-white/20">
-                  <span>Capture geometry</span>
-                  <span>Reverse engineering</span>
+                  <span>{tx("Capture geometry")}</span>
+                  <span>{tx("Reverse engineering")}</span>
                 </div>
               </div>
 
@@ -344,27 +294,18 @@ export default function Home() {
             02
           </span>
 
-                  <span className="rounded-full border border-white/10 px-4 py-2 text-xs uppercase tracking-[0.25em] text-blue-400">
-            Capture
-          </span>
+                  <span className="rounded-full border border-white/10 px-4 py-2 text-xs uppercase tracking-[0.25em] text-blue-400">{tx("Capture")}</span>
                 </div>
 
                 <div>
-                  <h3 className="text-4xl font-medium tracking-[-0.03em] md:text-5xl">
-                    3D Scanning
-                  </h3>
+                  <h3 className="text-4xl font-medium tracking-[-0.03em] md:text-5xl">{tx("3D Scanning")}</h3>
 
-                  <p className="mt-6 max-w-lg text-base leading-7 text-white/45">
-                    Real-world objects become accurate digital geometry, ready
-                    for reproduction, modification and further development.
-                  </p>
+                  <p className="mt-6 max-w-lg text-base leading-7 text-white/45">{tx("Real-world objects become accurate digital geometry, ready for reproduction, modification and further development.")}</p>
 
                   <a
                       href="#contact"
                       className="mt-8 inline-flex items-center gap-3 text-sm text-white transition group-hover:text-blue-400"
-                  >
-                    Explore 3D Scanning
-                    <span>↗</span>
+                  >{tx("Explore 3D Scanning")}<span>↗</span>
                   </a>
                 </div>
               </div>
@@ -378,27 +319,18 @@ export default function Home() {
             03
           </span>
 
-                  <span className="rounded-full border border-white/10 px-4 py-2 text-xs uppercase tracking-[0.25em] text-blue-400">
-            Manufacture
-          </span>
+                  <span className="rounded-full border border-white/10 px-4 py-2 text-xs uppercase tracking-[0.25em] text-blue-400">{tx("Manufacture")}</span>
                 </div>
 
                 <div>
-                  <h3 className="text-4xl font-medium tracking-[-0.03em] md:text-5xl">
-                    3D Printing
-                  </h3>
+                  <h3 className="text-4xl font-medium tracking-[-0.03em] md:text-5xl">{tx("3D Printing")}</h3>
 
-                  <p className="mt-6 max-w-lg text-base leading-7 text-white/45">
-                    From prototypes to replacement parts, we turn digital models
-                    into functional components produced on demand.
-                  </p>
+                  <p className="mt-6 max-w-lg text-base leading-7 text-white/45">{tx("From prototypes to replacement parts, we turn digital models into functional components produced on demand.")}</p>
 
                   <a
                       href="#contact"
                       className="mt-8 inline-flex items-center gap-3 text-sm text-white transition group-hover:text-blue-400"
-                  >
-                    Explore 3D Printing
-                    <span>↗</span>
+                  >{tx("Explore 3D Printing")}<span>↗</span>
                   </a>
                 </div>
               </div>
@@ -411,17 +343,13 @@ export default function Home() {
                 <div className="absolute left-1/2 top-1/2 h-[260px] w-[260px] -translate-x-1/2 -translate-y-1/2 -rotate-6 rounded-[28%] border border-white/10 bg-black/40 backdrop-blur-xl" />
 
                 <div className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-center">
-                  <p className="text-xs uppercase tracking-[0.4em] text-white/30">
-                    Layer by layer
-                  </p>
+                  <p className="text-xs uppercase tracking-[0.4em] text-white/30">{tx("Layer by layer")}</p>
 
                   <div className="mt-4 text-6xl font-semibold tracking-[-0.06em]">
                     PRINT
                   </div>
 
-                  <p className="mt-5 text-xs uppercase tracking-[0.35em] text-blue-400">
-                    Digital → Physical
-                  </p>
+                  <p className="mt-5 text-xs uppercase tracking-[0.35em] text-blue-400">{tx("Digital → Physical")}</p>
                 </div>
               </div>
             </article>
@@ -433,23 +361,14 @@ export default function Home() {
           <div className="relative mx-auto max-w-7xl">
             <div className="mb-20 grid gap-10 lg:grid-cols-[1fr_0.7fr] lg:items-end">
               <div>
-                <p className="mb-5 text-xs uppercase tracking-[0.35em] text-blue-400">
-                  3D workflow
-                </p>
+                <p className="mb-5 text-xs uppercase tracking-[0.35em] text-blue-400">{tx("3D workflow")}</p>
 
-                <h2 className="max-w-4xl text-4xl font-semibold tracking-[-0.04em] sm:text-5xl md:text-6xl">
-                  From physical object
-                  <br />
-                  <span className="text-white/35">
-            to finished part.
-          </span>
+                <h2 className="max-w-4xl text-4xl font-semibold tracking-[-0.04em] sm:text-5xl md:text-6xl">{tx("From physical object")}<br />
+                  <span className="text-white/35">{tx("to finished part.")}</span>
                 </h2>
               </div>
 
-              <p className="max-w-md text-base leading-7 text-white/45">
-                A complete workflow for recreating, improving and manufacturing
-                real-world components with precision.
-              </p>
+              <p className="max-w-md text-base leading-7 text-white/45">{tx("A complete workflow for recreating, improving and manufacturing real-world components with precision.")}</p>
             </div>
 
             <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.025]">
@@ -459,31 +378,31 @@ export default function Home() {
                 {[
                   {
                     number: "01",
-                    label: "Capture",
-                    title: "Scan",
+                    label: tx("Capture"),
+                    title: tx("Scan"),
                     icon: "◎",
-                    text: "We capture the geometry of the physical object in high detail.",
+                    text: tx("We capture the geometry of the physical object in high detail."),
                   },
                   {
                     number: "02",
-                    label: "Rebuild",
-                    title: "Model",
+                    label: tx("Rebuild"),
+                    title: tx("Model"),
                     icon: "◇",
-                    text: "The scanned data is transformed into a clean and usable digital model.",
+                    text: tx("The scanned data is transformed into a clean and usable digital model."),
                   },
                   {
                     number: "03",
-                    label: "Refine",
-                    title: "Optimize",
+                    label: tx("Refine"),
+                    title: tx("Optimize"),
                     icon: "△",
-                    text: "Geometry is corrected, improved and prepared for its final application.",
+                    text: tx("Geometry is corrected, improved and prepared for its final application."),
                   },
                   {
                     number: "04",
-                    label: "Manufacture",
-                    title: "Print",
+                    label: tx("Manufacture"),
+                    title: tx("Print"),
                     icon: "⬡",
-                    text: "The finished model becomes a functional physical component.",
+                    text: tx("The finished model becomes a functional physical component."),
                   },
                 ].map((step, index) => (
                     <div
@@ -494,7 +413,7 @@ export default function Home() {
                     >
                       <div className="relative z-10 flex items-center justify-between">
               <span className="text-xs text-white/25">
-                STEP {step.number}
+                {tx("STEP")} {step.number}
               </span>
 
                         <div className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-[#0B0B0D] text-xl text-blue-400 transition duration-300 group-hover:border-blue-500/50 group-hover:bg-blue-500 group-hover:text-white">
@@ -523,17 +442,17 @@ export default function Home() {
             </div>
 
             <div className="mt-8 flex flex-wrap items-center gap-4 text-xs uppercase tracking-[0.25em] text-white/30">
-              <span className="text-white/55">Physical</span>
+              <span className="text-white/55">{tx("Physical")}</span>
               <span className="text-blue-400">→</span>
-              <span>Scan</span>
+              <span>{tx("Scan")}</span>
               <span className="text-blue-400">→</span>
-              <span>Model</span>
+              <span>{tx("Model")}</span>
               <span className="text-blue-400">→</span>
-              <span>Optimize</span>
+              <span>{tx("Optimize")}</span>
               <span className="text-blue-400">→</span>
-              <span>Print</span>
+              <span>{tx("Print")}</span>
               <span className="text-blue-400">→</span>
-              <span className="text-white/55">Physical</span>
+              <span className="text-white/55">{tx("Physical")}</span>
             </div>
           </div>
         </section>
@@ -547,24 +466,14 @@ export default function Home() {
             {/* HEADER */}
             <div className="mb-20 grid gap-10 lg:grid-cols-[1fr_0.65fr] lg:items-end">
               <div>
-                <p className="mb-5 text-xs uppercase tracking-[0.35em] text-blue-400">
-                  Selected transformations
-                </p>
+                <p className="mb-5 text-xs uppercase tracking-[0.35em] text-blue-400">{tx("Selected transformations")}</p>
 
-                <h2 className="max-w-4xl text-4xl font-semibold tracking-[-0.04em] sm:text-5xl md:text-6xl">
-                  Your website shouldn&apos;t
-                  <br />
-                  <span className="text-white/35">
-            feel 10 years old.
-          </span>
+                <h2 className="max-w-4xl text-4xl font-semibold tracking-[-0.04em] sm:text-5xl md:text-6xl">{tx("Your website shouldn&apos;t")}<br />
+                  <span className="text-white/35">{tx("feel 10 years old.")}</span>
                 </h2>
               </div>
 
-              <p className="max-w-md text-base leading-7 text-white/45">
-                We transform outdated business websites into modern,
-                responsive experiences designed to build trust and generate
-                more enquiries.
-              </p>
+              <p className="max-w-md text-base leading-7 text-white/45">{tx("We transform outdated business websites into modern, responsive experiences designed to build trust and generate more enquiries.")}</p>
             </div>
 
 
@@ -578,37 +487,24 @@ export default function Home() {
                 <div>
                   <div className="mb-4 flex flex-wrap items-center gap-3">
         <span className="text-xs uppercase tracking-[0.3em] text-red-400">
-          01 — Automotive
+          {language === "ro" ? "01 — Auto" : "01 — Automotive"}
         </span>
 
-                    <span className="rounded-full border border-red-500/20 bg-red-500/[0.06] px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-red-400">
-          Live Showcase
-        </span>
+                    <span className="rounded-full border border-red-500/20 bg-red-500/[0.06] px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-red-400">{tx("Live Showcase")}</span>
 
-                    <span className="rounded-full border border-white/10 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-white/30">
-          Rebrand + Website
-        </span>
+                    <span className="rounded-full border border-white/10 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-white/30">{tx("Rebrand + Website")}</span>
                   </div>
 
-                  <h3 className="text-3xl font-medium tracking-[-0.03em] md:text-4xl">
-                    Auto Service
-                    <span className="mx-3 text-white/20">→</span>
+                  <h3 className="text-3xl font-medium tracking-[-0.03em] md:text-4xl">{tx("Auto Service")}<span className="mx-3 text-white/20">→</span>
                     <span className="font-semibold">
           APEX<span className="text-red-500">AUTO.</span>
         </span>
                   </h3>
 
-                  <p className="mt-4 max-w-2xl text-sm leading-6 text-white/35">
-                    A complete transformation of a traditional local workshop into a
-                    modern automotive brand — from identity and positioning to a
-                    conversion-focused digital experience.
-                  </p>
+                  <p className="mt-4 max-w-2xl text-sm leading-6 text-white/35">{tx("A complete transformation of a traditional local workshop into a modern automotive brand — from identity and positioning to a conversion-focused digital experience.")}</p>
                 </div>
 
-                <div className="flex items-center gap-3 text-xs uppercase tracking-[0.18em] text-white/35">
-                  View transformation
-
-                  <span className="text-xl text-red-400 transition duration-300 group-hover:-translate-y-1 group-hover:translate-x-1">
+                <div className="flex items-center gap-3 text-xs uppercase tracking-[0.18em] text-white/35">{tx("View transformation")}<span className="text-xl text-red-400 transition duration-300 group-hover:-translate-y-1 group-hover:translate-x-1">
         ↗
       </span>
                 </div>
@@ -620,13 +516,9 @@ export default function Home() {
                 {/* BEFORE */}
                 <div className="border-b border-white/10 p-6 md:p-10 lg:border-b-0 lg:border-r">
                   <div className="mb-5 flex items-center justify-between">
-        <span className="text-xs uppercase tracking-[0.25em] text-white/25">
-          Before
-        </span>
+        <span className="text-xs uppercase tracking-[0.25em] text-white/25">{tx("Before")}</span>
 
-                    <span className="text-xs text-white/20">
-          Old identity
-        </span>
+                    <span className="text-xs text-white/20">{tx("Old identity")}</span>
                   </div>
 
                   <div className="overflow-hidden rounded-[20px] border border-white/10 bg-[#E8E8E4] text-[#252525]">
@@ -651,26 +543,19 @@ export default function Home() {
                         </div>
 
                         <div className="hidden gap-4 text-[9px] md:flex">
-                          <span>HOME</span>
-                          <span>SERVICES</span>
-                          <span>ABOUT US</span>
-                          <span>CONTACT</span>
+                          <span>{tx("HOME")}</span>
+                          <span>{tx("SERVICES")}</span>
+                          <span>{tx("ABOUT US")}</span>
+                          <span>{tx("CONTACT")}</span>
                         </div>
                       </div>
 
                       <div className="mt-5 border border-black/20 bg-[#C8C8C2] p-5">
-                        <div className="text-xl font-bold">
-                          WELCOME TO OUR WEBSITE
-                        </div>
+                        <div className="text-xl font-bold">{tx("WELCOME TO OUR WEBSITE")}</div>
 
-                        <p className="mt-3 max-w-md text-xs leading-5 text-black/60">
-                          We offer professional car repair and maintenance services.
-                          Contact us for more information about our services and prices.
-                        </p>
+                        <p className="mt-3 max-w-md text-xs leading-5 text-black/60">{tx("We offer professional car repair and maintenance services. Contact us for more information about our services and prices.")}</p>
 
-                        <div className="mt-5 inline-block border border-black bg-[#DDD] px-4 py-2 text-[10px]">
-                          READ MORE
-                        </div>
+                        <div className="mt-5 inline-block border border-black bg-[#DDD] px-4 py-2 text-[10px]">{tx("READ MORE")}</div>
                       </div>
 
                       <div className="mt-4 grid grid-cols-3 gap-2">
@@ -685,9 +570,7 @@ export default function Home() {
                       </div>
 
                       <div className="mt-5 border-t border-black/10 pt-4">
-                        <p className="text-[8px] uppercase tracking-[0.16em] text-black/30">
-                          Generic identity · Limited functionality
-                        </p>
+                        <p className="text-[8px] uppercase tracking-[0.16em] text-black/30">{tx("Generic identity · Limited functionality")}</p>
                       </div>
                     </div>
                   </div>
@@ -698,13 +581,9 @@ export default function Home() {
                   <div className="absolute right-[-80px] top-[-80px] h-72 w-72 rounded-full bg-red-600/15 blur-[100px]" />
 
                   <div className="relative mb-5 flex items-center justify-between">
-        <span className="text-xs uppercase tracking-[0.25em] text-red-400">
-          After
-        </span>
+        <span className="text-xs uppercase tracking-[0.25em] text-red-400">{tx("After")}</span>
 
-                    <span className="text-xs text-white/25">
-          FORMORA transformation
-        </span>
+                    <span className="text-xs text-white/25">{tx("FORMORA transformation")}</span>
                   </div>
 
                   {/* NEW WEBSITE PREVIEW */}
@@ -744,13 +623,11 @@ export default function Home() {
                           </div>
 
                           <div className="hidden items-center gap-4 text-[7px] uppercase tracking-[0.12em] text-white/40 md:flex">
-                            <span>Services</span>
-                            <span>About</span>
+                            <span>{tx("Services")}</span>
+                            <span>{tx("About")}</span>
                             <span>Contact</span>
 
-                            <span className="bg-red-500 px-3 py-2 font-semibold text-white">
-                  Book service
-                </span>
+                            <span className="bg-red-500 px-3 py-2 font-semibold text-white">{tx("Book service")}</span>
                           </div>
                         </div>
 
@@ -759,33 +636,20 @@ export default function Home() {
                           <div className="mb-3 flex items-center gap-2">
                             <span className="h-px w-6 bg-red-500" />
 
-                            <p className="text-[8px] uppercase tracking-[0.25em] text-red-400">
-                              Automotive service
-                            </p>
+                            <p className="text-[8px] uppercase tracking-[0.25em] text-red-400">{tx("Automotive service")}</p>
                           </div>
 
-                          <h4 className="text-4xl font-black leading-[0.82] tracking-[-0.06em] text-white md:text-5xl">
-                            DRIVE.
-                            <br />
-                            <span className="text-white/30">
-                  WE&apos;LL FIX.
-                </span>
+                          <h4 className="text-4xl font-black leading-[0.82] tracking-[-0.06em] text-white md:text-5xl">{tx("DRIVE.")}<br />
+                            <span className="text-white/30">{tx("WE&apos;LL FIX.")}</span>
                           </h4>
 
-                          <p className="mt-5 max-w-[270px] text-[10px] leading-4 text-white/40">
-                            Modern maintenance, diagnostics and repairs with transparent
-                            pricing and a simple online booking experience.
-                          </p>
+                          <p className="mt-5 max-w-[270px] text-[10px] leading-4 text-white/40">{tx("Modern maintenance, diagnostics and repairs with transparent pricing and a simple online booking experience.")}</p>
 
-                          <div className="mt-6 inline-flex items-center gap-2 bg-red-500 px-4 py-2.5 text-[8px] font-semibold uppercase tracking-[0.12em] text-white">
-                            Book service
-                            <span>↗</span>
+                          <div className="mt-6 inline-flex items-center gap-2 bg-red-500 px-4 py-2.5 text-[8px] font-semibold uppercase tracking-[0.12em] text-white">{tx("Book service")}<span>↗</span>
                           </div>
                         </div>
 
-                        <div className="absolute bottom-5 right-5 hidden rounded-full border border-white/15 bg-black/40 px-4 py-2 text-[8px] uppercase tracking-[0.15em] text-white/50 backdrop-blur md:block">
-                          Click to explore ↗
-                        </div>
+                        <div className="absolute bottom-5 right-5 hidden rounded-full border border-white/15 bg-black/40 px-4 py-2 text-[8px] uppercase tracking-[0.15em] text-white/50 backdrop-blur md:block">{tx("Click to explore ↗")}</div>
                       </div>
                     </div>
                   </div>
@@ -795,10 +659,10 @@ export default function Home() {
               {/* TRANSFORMATION */}
               <div className="grid border-t border-white/10 sm:grid-cols-2 lg:grid-cols-4">
                 {[
-                  ["01", "Brand Strategy", "Clearer positioning"],
-                  ["02", "Visual Identity", "New automotive brand"],
-                  ["03", "Website", "Modern responsive UX"],
-                  ["04", "Conversion", "Booking & diagnostics"],
+                  ["01", tx("Brand Strategy"), tx("Clearer positioning")],
+                  ["02", tx("Visual Identity"), tx("New automotive brand")],
+                  ["03", tx("Website"), tx("Modern responsive UX")],
+                  ["04", tx("Conversion"), tx("Booking & diagnostics")],
                 ].map(([number, title, text], index) => (
                     <div
                         key={number}
@@ -826,18 +690,12 @@ export default function Home() {
               {/* CTA */}
               <div className="flex flex-col gap-5 border-t border-white/10 bg-black/20 p-7 sm:flex-row sm:items-center sm:justify-between md:px-10">
                 <div>
-                  <p className="text-[9px] uppercase tracking-[0.22em] text-red-400">
-                    Rebrand · UX/UI · Development
-                  </p>
+                  <p className="text-[9px] uppercase tracking-[0.22em] text-red-400">{tx("Rebrand · UX/UI · Development")}</p>
 
-                  <p className="mt-2 text-sm text-white/30">
-                    APEX AUTO — Automotive Service Showcase
-                  </p>
+                  <p className="mt-2 text-sm text-white/30">{tx("APEX AUTO — Automotive Service Showcase")}</p>
                 </div>
 
-                <div className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.04] px-5 py-3 text-[9px] font-medium uppercase tracking-[0.15em] text-white/60 transition group-hover:border-red-500/30 group-hover:bg-red-500 group-hover:text-white">
-                  Explore live website
-                  <span>↗</span>
+                <div className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.04] px-5 py-3 text-[9px] font-medium uppercase tracking-[0.15em] text-white/60 transition group-hover:border-red-500/30 group-hover:bg-red-500 group-hover:text-white">{tx("Explore live website")}<span>↗</span>
                 </div>
               </div>
             </Link>
@@ -854,12 +712,10 @@ export default function Home() {
                   <div>
                     <div className="flex flex-wrap items-center gap-3">
           <span className="text-xs uppercase tracking-[0.3em] text-[#c8ab7c]">
-            02 — Hospitality
+            {language === "ro" ? "02 — Ospitalitate" : "02 — Hospitality"}
           </span>
 
-                      <span className="rounded-full border border-[#c8ab7c]/20 bg-[#c8ab7c]/[0.06] px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-[#c8ab7c]">
-            Live Showcase
-          </span>
+                      <span className="rounded-full border border-[#c8ab7c]/20 bg-[#c8ab7c]/[0.06] px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-[#c8ab7c]">{tx("Live Showcase")}</span>
                     </div>
 
                     <div className="mt-16">
@@ -867,18 +723,11 @@ export default function Home() {
                         NOIR
                       </p>
 
-                      <h3 className="mt-6 max-w-lg font-serif text-5xl font-light leading-[0.95] tracking-[-0.04em] text-white md:text-6xl">
-                        Taste
-                        <br />
-                        <span className="italic text-[#c8ab7c]">
-              the night.
-            </span>
+                      <h3 className="mt-6 max-w-lg font-serif text-5xl font-light leading-[0.95] tracking-[-0.04em] text-white md:text-6xl">{tx("Taste")}<br />
+                        <span className="italic text-[#c8ab7c]">{tx("the night.")}</span>
                       </h3>
 
-                      <p className="mt-7 max-w-md text-sm leading-7 text-white/40">
-                        A complete digital experience for a contemporary fine dining
-                        restaurant — designed to feel premium on every screen.
-                      </p>
+                      <p className="mt-7 max-w-md text-sm leading-7 text-white/40">{tx("A complete digital experience for a contemporary fine dining restaurant — designed to feel premium on every screen.")}</p>
                     </div>
                   </div>
 
@@ -886,21 +735,17 @@ export default function Home() {
                     <a
                         href="/showcase/noir"
                         className="inline-flex items-center gap-4 rounded-full border border-[#c8ab7c]/40 bg-[#c8ab7c] px-6 py-3.5 text-xs font-medium text-black transition duration-300 hover:bg-[#e0c89f]"
-                    >
-                      Explore live website
-                      <span>↗</span>
+                    >{tx("Explore live website")}<span>↗</span>
                     </a>
 
-                    <p className="mt-5 text-[10px] uppercase tracking-[0.2em] text-white/20">
-                      Interactive · Responsive · Live demo
-                    </p>
+                    <p className="mt-5 text-[10px] uppercase tracking-[0.2em] text-white/20">{tx("Interactive · Responsive · Live demo")}</p>
                   </div>
                 </div>
 
                 {/* WEBSITE PREVIEW */}
                 <a
                     href="/showcase/noir"
-                    aria-label="Explore NOIR live showcase"
+                    aria-label={tx("Explore NOIR live showcase")}
                     className="relative min-h-[480px] overflow-hidden border-t border-white/10 lg:min-h-full lg:border-l lg:border-t-0"
                 >
                   <div
@@ -935,22 +780,14 @@ export default function Home() {
               NOIR
             </span>
 
-                        <span className="border border-white/20 px-3 py-1.5 text-[7px] uppercase tracking-[0.15em] text-white/70">
-              Reserve
-            </span>
+                        <span className="border border-white/20 px-3 py-1.5 text-[7px] uppercase tracking-[0.15em] text-white/70">{tx("Reserve")}</span>
                       </div>
 
                       <div className="mt-12">
-                        <p className="text-[7px] uppercase tracking-[0.3em] text-[#c8ab7c]">
-                          Contemporary fine dining
-                        </p>
+                        <p className="text-[7px] uppercase tracking-[0.3em] text-[#c8ab7c]">{tx("Contemporary fine dining")}</p>
 
-                        <p className="mt-4 font-serif text-4xl font-light leading-[0.85] md:text-5xl">
-                          Taste
-                          <br />
-                          <span className="italic text-[#c8ab7c]">
-                the night.
-              </span>
+                        <p className="mt-4 font-serif text-4xl font-light leading-[0.85] md:text-5xl">{tx("Taste")}<br />
+                          <span className="italic text-[#c8ab7c]">{tx("the night.")}</span>
                         </p>
                       </div>
 
@@ -960,19 +797,17 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <div className="absolute right-7 top-7 rounded-full border border-white/15 bg-black/30 px-4 py-2 text-[9px] uppercase tracking-[0.2em] text-white/60 backdrop-blur-md">
-                    Click to explore
-                  </div>
+                  <div className="absolute right-7 top-7 rounded-full border border-white/15 bg-black/30 px-4 py-2 text-[9px] uppercase tracking-[0.2em] text-white/60 backdrop-blur-md">{tx("Click to explore")}</div>
                 </a>
               </div>
 
               {/* FEATURES */}
               <div className="grid border-t border-white/10 sm:grid-cols-2 lg:grid-cols-4">
                 {[
-                  ["01", "Premium identity"],
-                  ["02", "Responsive design"],
-                  ["03", "Interactive experience"],
-                  ["04", "Conversion focused"],
+                  ["01", tx("Premium identity")],
+                  ["02", tx("Responsive design")],
+                  ["03", tx("Interactive experience")],
+                  ["04", tx("Conversion focused")],
                 ].map(([number, text], index) => (
                     <div
                         key={number}
@@ -1004,12 +839,10 @@ export default function Home() {
                 <div className="flex items-center justify-between">
                   <div className="flex flex-wrap items-center gap-3">
       <span className="text-xs uppercase tracking-[0.25em] text-blue-400">
-        03 — Healthcare
+        {language === "ro" ? "03 — Sănătate" : "03 — Healthcare"}
       </span>
 
-                    <span className="rounded-full border border-blue-400/20 bg-blue-400/[0.06] px-3 py-1 text-[9px] uppercase tracking-[0.18em] text-blue-300">
-        Live Showcase
-      </span>
+                    <span className="rounded-full border border-blue-400/20 bg-blue-400/[0.06] px-3 py-1 text-[9px] uppercase tracking-[0.18em] text-blue-300">{tx("Live Showcase")}</span>
                   </div>
 
                   <span className="text-xl text-white/30 transition duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-blue-300">
@@ -1036,40 +869,26 @@ export default function Home() {
           NOVA<span className="text-[#4B8DFF]">DENT</span>
         </span>
 
-                      <span className="hidden text-[8px] text-[#10223D]/35 sm:block">
-          About · Treatments · Technology · Contact
-        </span>
+                      <span className="hidden text-[8px] text-[#10223D]/35 sm:block">{tx("About · Treatments · Technology · Contact")}</span>
                     </div>
 
                     {/* MINI HERO */}
                     <div className="mt-12 max-w-xs">
-                      <p className="mb-3 text-[8px] font-semibold uppercase tracking-[0.22em] text-[#4B8DFF]">
-                        Modern dental care
-                      </p>
+                      <p className="mb-3 text-[8px] font-semibold uppercase tracking-[0.22em] text-[#4B8DFF]">{tx("Modern dental care")}</p>
 
-                      <div className="text-3xl font-medium leading-[0.95] tracking-[-0.05em] text-[#10223D]">
-                        Your smile,
-                        <br />
-                        <span className="text-[#4B8DFF]">
-            reimagined.
-          </span>
+                      <div className="text-3xl font-medium leading-[0.95] tracking-[-0.05em] text-[#10223D]">{tx("Your smile,")}<br />
+                        <span className="text-[#4B8DFF]">{tx("reimagined.")}</span>
                       </div>
 
-                      <p className="mt-4 max-w-[220px] text-[9px] leading-4 text-[#10223D]/45">
-                        Modern dentistry built around comfort, precision and natural results.
-                      </p>
+                      <p className="mt-4 max-w-[220px] text-[9px] leading-4 text-[#10223D]/45">{tx("Modern dentistry built around comfort, precision and natural results.")}</p>
 
-                      <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#4B8DFF] px-4 py-2 text-[8px] font-semibold uppercase tracking-[0.1em] text-white">
-                        Explore website
-                        <span>↗</span>
+                      <div className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#4B8DFF] px-4 py-2 text-[8px] font-semibold uppercase tracking-[0.1em] text-white">{tx("Explore website")}<span>↗</span>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <p className="text-xs uppercase tracking-[0.25em] text-blue-400">
-                  Interactive website
-                </p>
+                <p className="text-xs uppercase tracking-[0.25em] text-blue-400">{tx("Interactive website")}</p>
 
                 <div className="mt-3 flex items-end justify-between gap-5">
                   <div>
@@ -1077,14 +896,10 @@ export default function Home() {
                       NOVA DENT
                     </h3>
 
-                    <p className="mt-2 text-sm text-white/30">
-                      Modern dental clinic showcase
-                    </p>
+                    <p className="mt-2 text-sm text-white/30">{tx("Modern dental clinic showcase")}</p>
                   </div>
 
-                  <span className="hidden text-[10px] uppercase tracking-[0.18em] text-white/25 sm:block">
-      Explore live →
-    </span>
+                  <span className="hidden text-[10px] uppercase tracking-[0.18em] text-white/25 sm:block">{tx("Explore live →")}</span>
                 </div>
               </Link>
 
@@ -1097,12 +912,10 @@ export default function Home() {
                 <div className="flex items-center justify-between">
                   <div className="flex flex-wrap items-center gap-3">
       <span className="text-xs uppercase tracking-[0.25em] text-blue-400">
-        04 — Construction
+        {language === "ro" ? "04 — Construcții" : "04 — Construction"}
       </span>
 
-                    <span className="rounded-full border border-[#FF5C35]/20 bg-[#FF5C35]/[0.06] px-3 py-1 text-[9px] uppercase tracking-[0.18em] text-[#FF7655]">
-        Live Showcase
-      </span>
+                    <span className="rounded-full border border-[#FF5C35]/20 bg-[#FF5C35]/[0.06] px-3 py-1 text-[9px] uppercase tracking-[0.18em] text-[#FF7655]">{tx("Live Showcase")}</span>
                   </div>
 
                   <span className="text-xl text-white/30 transition duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-[#FF7655]">
@@ -1129,50 +942,32 @@ export default function Home() {
           <span className="text-[#FF5C35]">.</span>
         </span>
 
-                      <span className="hidden text-[8px] text-white/35 sm:block">
-          Projects · Studio · Services · Contact
-        </span>
+                      <span className="hidden text-[8px] text-white/35 sm:block">{tx("Projects · Studio · Services · Contact")}</span>
                     </div>
 
                     <div className="mt-12 max-w-xs">
-                      <p className="mb-3 text-[8px] uppercase tracking-[0.28em] text-[#FF7655]">
-                        Architecture · Construction
-                      </p>
+                      <p className="mb-3 text-[8px] uppercase tracking-[0.28em] text-[#FF7655]">{tx("Architecture · Construction")}</p>
 
-                      <div className="text-3xl font-semibold leading-[0.95] tracking-[-0.05em] text-white">
-                        WE BUILD
-                        <br />
-                        <span className="text-white/40">
-            FORWARD.
-          </span>
+                      <div className="text-3xl font-semibold leading-[0.95] tracking-[-0.05em] text-white">{tx("WE BUILD")}<br />
+                        <span className="text-white/40">{tx("FORWARD.")}</span>
                       </div>
 
-                      <div className="mt-6 inline-flex items-center gap-2 border border-[#FF5C35]/40 bg-[#FF5C35] px-4 py-2 text-[8px] font-medium uppercase tracking-[0.12em] text-black">
-                        Explore website
-                        <span>↗</span>
+                      <div className="mt-6 inline-flex items-center gap-2 border border-[#FF5C35]/40 bg-[#FF5C35] px-4 py-2 text-[8px] font-medium uppercase tracking-[0.12em] text-black">{tx("Explore website")}<span>↗</span>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <p className="text-xs uppercase tracking-[0.25em] text-[#FF7655]">
-                  Interactive website
-                </p>
+                <p className="text-xs uppercase tracking-[0.25em] text-[#FF7655]">{tx("Interactive website")}</p>
 
                 <div className="mt-3 flex items-end justify-between gap-5">
                   <div>
-                    <h3 className="text-2xl font-medium">
-                      Construction Company
-                    </h3>
+                    <h3 className="text-2xl font-medium">{tx("Construction Company")}</h3>
 
-                    <p className="mt-2 text-sm text-white/30">
-                      Architecture & construction showcase
-                    </p>
+                    <p className="mt-2 text-sm text-white/30">{tx("Architecture & construction showcase")}</p>
                   </div>
 
-                  <span className="hidden text-[10px] uppercase tracking-[0.18em] text-white/25 sm:block">
-      Explore live →
-    </span>
+                  <span className="hidden text-[10px] uppercase tracking-[0.18em] text-white/25 sm:block">{tx("Explore live →")}</span>
                 </div>
               </Link>
             </div>
@@ -1188,16 +983,12 @@ export default function Home() {
                   <div>
                     <div className="flex flex-wrap items-center gap-3">
           <span className="text-xs uppercase tracking-[0.3em] text-[#9B7A43]">
-            05 — E-commerce
+            {language === "ro" ? "05 — Comerț online" : "05 — E-commerce"}
           </span>
 
-                      <span className="rounded-full border border-[#B89A63]/30 bg-[#B89A63]/10 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-[#8A6A36]">
-            Live Showcase
-          </span>
+                      <span className="rounded-full border border-[#B89A63]/30 bg-[#B89A63]/10 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-[#8A6A36]">{tx("Live Showcase")}</span>
 
-                      <span className="rounded-full border border-black/10 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-black/40">
-            Full-stack
-          </span>
+                      <span className="rounded-full border border-black/10 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-black/40">{tx("Full-stack")}</span>
                     </div>
 
                     <div className="mt-20">
@@ -1205,37 +996,23 @@ export default function Home() {
                         NØRVA
                       </p>
 
-                      <p className="mt-3 text-[9px] uppercase tracking-[0.3em] text-[#9B7A43]">
-                        Copenhagen · Objects for living
-                      </p>
+                      <p className="mt-3 text-[9px] uppercase tracking-[0.3em] text-[#9B7A43]">{tx("Copenhagen · Objects for living")}</p>
 
-                      <h3 className="mt-8 max-w-lg text-5xl font-light leading-[0.92] tracking-[-0.05em] md:text-6xl">
-                        Designed
-                        <br />
-                        <span className="font-serif italic text-[#A48654]">
-              to be lived with.
-            </span>
+                      <h3 className="mt-8 max-w-lg text-5xl font-light leading-[0.92] tracking-[-0.05em] md:text-6xl">{tx("Designed")}<br />
+                        <span className="font-serif italic text-[#A48654]">{tx("to be lived with.")}</span>
                       </h3>
 
-                      <p className="mt-7 max-w-md text-sm leading-7 text-black/50">
-                        A complete premium e-commerce experience with dynamic
-                        products, persistent cart, secure checkout and integrated
-                        payment flow.
-                      </p>
+                      <p className="mt-7 max-w-md text-sm leading-7 text-black/50">{tx("A complete premium e-commerce experience with dynamic products, persistent cart, secure checkout and integrated payment flow.")}</p>
                     </div>
                   </div>
 
                   <div className="mt-14">
-                    <div className="inline-flex items-center gap-4 bg-[#171512] px-7 py-4 text-[10px] font-medium uppercase tracking-[0.18em] text-[#F3EEE4] transition duration-300 group-hover:bg-[#A48654]">
-                      Explore live store
-                      <span className="text-base transition duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-1">
+                    <div className="inline-flex items-center gap-4 bg-[#171512] px-7 py-4 text-[10px] font-medium uppercase tracking-[0.18em] text-[#F3EEE4] transition duration-300 group-hover:bg-[#A48654]">{tx("Explore live store")}<span className="text-base transition duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-1">
             ↗
           </span>
                     </div>
 
-                    <p className="mt-5 text-[9px] uppercase tracking-[0.2em] text-black/30">
-                      Interactive · Database · Cart · Stripe Checkout
-                    </p>
+                    <p className="mt-5 text-[9px] uppercase tracking-[0.2em] text-black/30">{tx("Interactive · Database · Cart · Stripe Checkout")}</p>
                   </div>
                 </div>
 
@@ -1281,34 +1058,23 @@ export default function Home() {
             </span>
 
                         <div className="hidden items-center gap-4 text-[7px] uppercase tracking-[0.15em] text-black/35 sm:flex">
-                          <span>Collection</span>
-                          <span>Journal</span>
-                          <span>Bag (0)</span>
+                          <span>{tx("Collection")}</span>
+                          <span>{tx("Journal")}</span>
+                          <span>{tx("Bag (0)")}</span>
                         </div>
                       </div>
 
                       {/* MINI HERO */}
                       <div className="mt-12 max-w-sm">
-                        <p className="text-[7px] uppercase tracking-[0.3em] text-[#A48654]">
-                          The new collection
-                        </p>
+                        <p className="text-[7px] uppercase tracking-[0.3em] text-[#A48654]">{tx("The new collection")}</p>
 
-                        <div className="mt-4 text-4xl font-light leading-[0.9] tracking-[-0.05em] text-[#171512] md:text-5xl">
-                          Quiet forms.
-                          <br />
-                          <span className="font-serif italic text-[#A48654]">
-                Lasting objects.
-              </span>
+                        <div className="mt-4 text-4xl font-light leading-[0.9] tracking-[-0.05em] text-[#171512] md:text-5xl">{tx("Quiet forms.")}<br />
+                          <span className="font-serif italic text-[#A48654]">{tx("Lasting objects.")}</span>
                         </div>
 
-                        <p className="mt-5 max-w-[260px] text-[9px] leading-4 text-black/40">
-                          Furniture and objects shaped by natural materials,
-                          thoughtful proportions and everyday life.
-                        </p>
+                        <p className="mt-5 max-w-[260px] text-[9px] leading-4 text-black/40">{tx("Furniture and objects shaped by natural materials, thoughtful proportions and everyday life.")}</p>
 
-                        <div className="mt-6 inline-flex bg-[#171512] px-4 py-2.5 text-[7px] uppercase tracking-[0.15em] text-[#F7F4EE]">
-                          Shop collection
-                        </div>
+                        <div className="mt-6 inline-flex bg-[#171512] px-4 py-2.5 text-[7px] uppercase tracking-[0.15em] text-[#F7F4EE]">{tx("Shop collection")}</div>
                       </div>
 
                       {/* DECORATIVE PRODUCT CARDS */}
@@ -1321,20 +1087,18 @@ export default function Home() {
                   </div>
 
                   {/* CLICK BADGE */}
-                  <div className="absolute right-7 top-7 rounded-full border border-white/50 bg-[#F7F4EE]/80 px-4 py-2 text-[9px] uppercase tracking-[0.2em] text-black/50 backdrop-blur-md">
-                    Click to explore
-                  </div>
+                  <div className="absolute right-7 top-7 rounded-full border border-white/50 bg-[#F7F4EE]/80 px-4 py-2 text-[9px] uppercase tracking-[0.2em] text-black/50 backdrop-blur-md">{tx("Click to explore")}</div>
                 </div>
               </div>
 
               {/* TECH / FEATURES */}
               <div className="grid border-t border-black/10 sm:grid-cols-2 lg:grid-cols-5">
                 {[
-                  ["01", "Dynamic products"],
-                  ["02", "Supabase database"],
-                  ["03", "Persistent cart"],
-                  ["04", "Secure checkout"],
-                  ["05", "Stripe payments"],
+                  ["01", tx("Dynamic products")],
+                  ["02", tx("Supabase database")],
+                  ["03", tx("Persistent cart")],
+                  ["04", tx("Secure checkout")],
+                  ["05", tx("Stripe payments")],
                 ].map(([number, text], index) => (
                     <div
                         key={number}
@@ -1358,18 +1122,12 @@ export default function Home() {
               {/* BOTTOM CTA */}
               <div className="flex flex-col gap-5 border-t border-black/10 bg-[#EDE6DA] p-7 sm:flex-row sm:items-center sm:justify-between md:px-10">
                 <div>
-                  <p className="text-[9px] uppercase tracking-[0.22em] text-[#9B7A43]">
-                    UX/UI · Development · Database · Payments
-                  </p>
+                  <p className="text-[9px] uppercase tracking-[0.22em] text-[#9B7A43]">{tx("UX/UI · Development · Database · Payments")}</p>
 
-                  <p className="mt-2 text-sm text-black/40">
-                    NØRVA — Premium E-commerce Showcase
-                  </p>
+                  <p className="mt-2 text-sm text-black/40">{tx("NØRVA — Premium E-commerce Showcase")}</p>
                 </div>
 
-                <div className="inline-flex items-center gap-3 border border-black/10 bg-[#171512] px-5 py-3 text-[9px] font-medium uppercase tracking-[0.15em] text-[#F7F4EE] transition duration-300 group-hover:bg-[#A48654]">
-                  Explore live store
-                  <span>↗</span>
+                <div className="inline-flex items-center gap-3 border border-black/10 bg-[#171512] px-5 py-3 text-[9px] font-medium uppercase tracking-[0.15em] text-[#F7F4EE] transition duration-300 group-hover:bg-[#A48654]">{tx("Explore live store")}<span>↗</span>
                 </div>
               </div>
             </Link>
@@ -1383,46 +1141,36 @@ export default function Home() {
           <div className="mx-auto max-w-7xl">
             <div className="grid gap-16 lg:grid-cols-[0.9fr_1.1fr]">
               <div>
-                <p className="mb-5 text-xs uppercase tracking-[0.35em] text-blue-400">
-                  Why FORMORA
-                </p>
+                <p className="mb-5 text-xs uppercase tracking-[0.35em] text-blue-400">{tx("Why FORMORA")}</p>
 
-                <h2 className="max-w-3xl text-4xl font-semibold tracking-[-0.04em] sm:text-5xl md:text-6xl">
-                  Not just a website.
-                  <br />
-                  <span className="text-white/35">
-            A complete solution.
-          </span>
+                <h2 className="max-w-3xl text-4xl font-semibold tracking-[-0.04em] sm:text-5xl md:text-6xl">{tx("Not just a website.")}<br />
+                  <span className="text-white/35">{tx("A complete solution.")}</span>
                 </h2>
 
-                <p className="mt-8 max-w-xl text-base leading-7 text-white/45">
-                  We combine design, development and technical thinking to create
-                  digital and physical solutions that are clear, functional and built
-                  with purpose.
-                </p>
+                <p className="mt-8 max-w-xl text-base leading-7 text-white/45">{tx("We combine design, development and technical thinking to create digital and physical solutions that are clear, functional and built with purpose.")}</p>
               </div>
 
               <div className="border-t border-white/10">
                 {[
                   {
                     number: "01",
-                    title: "Understand",
-                    text: "We start with the business, the problem and the real goal behind the project.",
+                    title: tx("Understand"),
+                    text: tx("We start with the business, the problem and the real goal behind the project."),
                   },
                   {
                     number: "02",
-                    title: "Design",
-                    text: "We define the structure, user experience and visual direction before development begins.",
+                    title: tx("Design"),
+                    text: tx("We define the structure, user experience and visual direction before development begins."),
                   },
                   {
                     number: "03",
-                    title: "Develop",
-                    text: "We turn the concept into a fast, responsive and reliable final product.",
+                    title: tx("Develop"),
+                    text: tx("We turn the concept into a fast, responsive and reliable final product."),
                   },
                   {
                     number: "04",
-                    title: "Deliver",
-                    text: "We test, optimize and launch the project ready for real-world use.",
+                    title: tx("Deliver"),
+                    text: tx("We test, optimize and launch the project ready for real-world use."),
                   },
                 ].map((item) => (
                     <div
@@ -1448,30 +1196,18 @@ export default function Home() {
             {/* DIFFERENTIATORS */}
             <div className="mt-24 grid gap-6 border-t border-white/10 pt-12 md:grid-cols-3">
               <div>
-                <p className="mb-3 text-xs uppercase tracking-[0.28em] text-blue-400">
-                  Modern
-                </p>
-                <p className="max-w-sm text-lg leading-7 text-white/70">
-                  Clean design, responsive layouts and current technologies.
-                </p>
+                <p className="mb-3 text-xs uppercase tracking-[0.28em] text-blue-400">{tx("Modern")}</p>
+                <p className="max-w-sm text-lg leading-7 text-white/70">{tx("Clean design, responsive layouts and current technologies.")}</p>
               </div>
 
               <div>
-                <p className="mb-3 text-xs uppercase tracking-[0.28em] text-blue-400">
-                  Technical
-                </p>
-                <p className="max-w-sm text-lg leading-7 text-white/70">
-                  Strong focus on performance, precision and real functionality.
-                </p>
+                <p className="mb-3 text-xs uppercase tracking-[0.28em] text-blue-400">{tx("Technical")}</p>
+                <p className="max-w-sm text-lg leading-7 text-white/70">{tx("Strong focus on performance, precision and real functionality.")}</p>
               </div>
 
               <div>
-                <p className="mb-3 text-xs uppercase tracking-[0.28em] text-blue-400">
-                  Flexible
-                </p>
-                <p className="max-w-sm text-lg leading-7 text-white/70">
-                  From a website redesign to a scanned and reproduced physical part.
-                </p>
+                <p className="mb-3 text-xs uppercase tracking-[0.28em] text-blue-400">{tx("Flexible")}</p>
+                <p className="max-w-sm text-lg leading-7 text-white/70">{tx("From a website redesign to a scanned and reproduced physical part.")}</p>
               </div>
             </div>
           </div>
@@ -1489,36 +1225,26 @@ export default function Home() {
                   FORMORA
                 </a>
 
-                <p className="mt-4 max-w-sm text-sm leading-6 text-white/35">
-                  Digital ideas. Made real.
-                </p>
+                <p className="mt-4 max-w-sm text-sm leading-6 text-white/35">{tx("Digital ideas. Made real.")}</p>
 
-                <p className="mt-2 text-xs text-white/20">
-                  Web Development · 3D Scanning · 3D Printing
-                </p>
+                <p className="mt-2 text-xs text-white/20">{tx("Web Development · 3D Scanning · 3D Printing")}</p>
               </div>
 
               <div className="flex flex-wrap gap-x-7 gap-y-3 text-sm text-white/40">
                 <a
                     href="#services"
                     className="transition hover:text-white"
-                >
-                  Services
-                </a>
+                >{tx("Services")}</a>
 
                 <a
                     href="#projects"
                     className="transition hover:text-white"
-                >
-                  Projects
-                </a>
+                >{tx("Projects")}</a>
 
                 <a
                     href="#about"
                     className="transition hover:text-white"
-                >
-                  About
-                </a>
+                >{tx("About")}</a>
 
                 <a
                     href="#contact"
@@ -1530,15 +1256,13 @@ export default function Home() {
                 <a
                     href="/client/login"
                     className="transition hover:text-white"
-                >
-                  Client Portal
-                </a>
+                >{tx("Client Portal")}</a>
               </div>
             </div>
 
             <div className="mt-10 flex flex-col gap-4 border-t border-white/[0.08] pt-6 text-xs text-white/20 sm:flex-row sm:items-center sm:justify-between">
               <p>
-                © {new Date().getFullYear()} FORMORA. All rights reserved.
+                © {new Date().getFullYear()} FORMORA. {tx("All rights reserved.")}
               </p>
 
               <a
