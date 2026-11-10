@@ -204,8 +204,7 @@ export async function POST(request: Request) {
                 await adminSupabase.auth.admin.inviteUserByEmail(
                     project.email,
                     {
-                        redirectTo:
-                            `${baseUrl}/client`,
+                        redirectTo: `${baseUrl}/client/set-password`,
                         data: {
                             full_name:
                                 project.name || "",
