@@ -6,18 +6,18 @@ export const translations = {
         nav: {
             services: "Servicii",
             projects: "Proiecte",
-            about: "Despre noi",
+            about: "Despre mine",
             contact: "Contact",
             portal: "Portal clienți",
             start: "Solicită o ofertă",
         },
 
         hero: {
-            badge: "Dezvoltare web · Scanare 3D · Printare 3D",
+            badge: "Site-uri de prezentare · Redesign · Magazine online",
             title: "Idei digitale.",
             highlight: "Transformate în realitate.",
             description:
-                "Creăm experiențe digitale moderne și transformăm ideile tale în produse reale, precise și funcționale.",
+                "Creăm site-uri moderne, rapide și ușor de găsit pe Google, pentru firme din România și din străinătate. Preț fix, stabilit dinainte.",
             primary: "Începe un proiect",
             secondary: "Descoperă serviciile",
         },
@@ -104,18 +104,18 @@ export const translations = {
         nav: {
             services: "Services",
             projects: "Projects",
-            about: "About",
+            about: "About me",
             contact: "Contact",
             portal: "Client Portal",
             start: "Start a project",
         },
 
         hero: {
-            badge: "Web Development · 3D Scanning · 3D Printing",
+            badge: "Web Development · Redesign · Online Stores",
             title: "Digital ideas.",
             highlight: "Made real.",
             description:
-                "We create modern digital experiences and turn your ideas into precise, functional products.",
+                "We build modern, fast websites that are easy to find on Google, for businesses in Romania and abroad. Fixed price, agreed upfront.",
             primary: "Start a project",
             secondary: "Explore services",
         },

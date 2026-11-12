@@ -17,12 +17,12 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.formora.ro"),
 
   title: {
-    default: "FORMORA — Web Development, 3D Scanning & 3D Printing",
+    default: "FORMORA — Creare site-uri web în Cluj-Napoca și remote",
     template: "%s | FORMORA",
   },
 
   description:
-      "FORMORA creates modern websites and provides professional 3D scanning and 3D printing solutions in Cluj-Napoca. Digital ideas. Made real.",
+      "Creare site-uri de prezentare, redesign și magazine online pentru firme din România și din străinătate. Preț fix, de la 1.490 lei. FORMORA, Cluj-Napoca.",
 
   keywords: [
     "FORMORA",
@@ -36,6 +36,10 @@ export const metadata: Metadata = {
     "3D printing Cluj",
     "printare 3D Cluj",
     "website development Romania",
+    "web developer Romania",
+    "website design Eastern Europe",
+    "pret site prezentare",
+    "magazin online Cluj",
   ],
 
   authors: [{ name: "FORMORA" }],
@@ -48,19 +52,20 @@ export const metadata: Metadata = {
 
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "ro_RO",
+    alternateLocale: ["en_US"],
     url: "https://www.formora.ro",
     siteName: "FORMORA",
     title: "FORMORA — Digital ideas. Made real.",
     description:
-        "Modern websites, professional 3D scanning and 3D printing solutions in Cluj-Napoca.",
+        "Site-uri moderne, redesign și magazine online pentru firme din România și internaționale.",
   },
 
   twitter: {
     card: "summary_large_image",
     title: "FORMORA — Digital ideas. Made real.",
     description:
-        "Web Development · 3D Scanning · 3D Printing",
+        "Site-uri de prezentare · Redesign · Magazine online",
   },
 
   robots: {

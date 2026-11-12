@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import { sendQuoteEmails } from "@/lib/quote-emails";
 
 export const runtime = "nodejs";
 
@@ -9,6 +10,11 @@ const allowedServices = new Set([
     "3D Scanning",
     "3D Printing",
     "Scan & Reproduce",
+]);
+const allowedPackages = new Set([
+    "Start", "Business", "Online store",
+    "Redesign: Refresh", "Redesign: Complete", "Redesign: Online store",
+    "Not sure",
 ]);
 const allowedExtensions = new Set([
     "stl", "step", "stp", "obj", "jpg", "jpeg", "png", "webp", "heic",
@@ -50,6 +56,9 @@ export async function POST(request: Request) {
         const phone = textField(form, "phone", 60);
         const websiteUrl = textField(form, "website_url", 500);
         const projectDetails = textField(form, "project_details", 10000);
+        const language = form.get("language") === "en" ? "en" : "ro";
+        const rawPackage = textField(form, "package", 40);
+        const selectedPackage = rawPackage && allowedPackages.has(rawPackage) ? rawPackage : "";
 
         if ([service, name, company, email, phone, websiteUrl, projectDetails].some((x) => x === null)) {
             return jsonError("One or more fields are too long or invalid.", 400);
@@ -91,7 +100,11 @@ export async function POST(request: Request) {
                 email,
                 phone: phone || null,
                 website_url: websiteUrl || null,
-                project_details: projectDetails || null,
+                // No DB column for the package: keep it at the top of the details, visible in admin.
+                project_details:
+                    [selectedPackage ? `Pachet: ${selectedPackage}` : "", projectDetails ?? ""]
+                        .filter(Boolean)
+                        .join("\n\n") || null,
                 status: "new",
             })
             .select("id")
@@ -131,6 +144,21 @@ export async function POST(request: Request) {
                 return jsonError("Request saved, but an attachment failed. Please contact us; do not submit again.", 500);
             }
         }
+
+        // Notify you + confirm to the client. Errors are logged, never shown to the visitor.
+        await sendQuoteEmails({
+            requestId: project.id,
+            service,
+            name,
+            company: company ?? "",
+            email,
+            phone: phone ?? "",
+            websiteUrl: websiteUrl ?? "",
+            projectDetails: projectDetails ?? "",
+            package: selectedPackage,
+            fileNames: files.map((file) => file.name),
+            language,
+        });
 
         return NextResponse.json({ success: true, requestId: project.id }, { status: 201 });
     } catch (error) {

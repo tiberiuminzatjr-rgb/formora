@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { requireAdminPage } from "@/lib/auth/admin";
 import OrderStatus from "./OrderStatus";
 import LogoutButton from "./LogoutButton";
 
@@ -53,6 +54,9 @@ export default async function NorvaOrdersPage({
     if (!user) {
         redirect("/admin/norva/login");
     }
+
+    // Logged in is not enough: the user must be an admin.
+    await requireAdminPage("/admin/norva/login");
 
     /* ==============================
        LOAD ORDERS

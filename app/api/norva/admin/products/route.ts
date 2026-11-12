@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { adminGuard } from "@/lib/auth/admin";
 
 export async function POST(request: Request) {
     try {
@@ -18,6 +19,10 @@ export async function POST(request: Request) {
                 { status: 401 }
             );
         }
+
+        // Only Formora admins may manage NØRVA data (service-role bypasses RLS).
+        const forbidden = await adminGuard();
+        if (forbidden) return forbidden;
 
         // 2. Read product data
         const body = await request.json();

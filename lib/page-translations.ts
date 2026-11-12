@@ -12,7 +12,7 @@ export const pageTranslations = {
     "A complete workflow for recreating, improving and manufacturing real-world components with precision.": "Un proces complet pentru reproducerea, îmbunătățirea și fabricarea cu precizie a componentelor.",
     "ABOUT US": "DESPRE NOI",
     "APEX AUTO — Automotive Service Showcase": "APEX AUTO — Demo service auto",
-    "About": "Despre noi",
+    "About": "Despre mine",
     "About · Treatments · Technology · Contact": "Despre noi · Tratamente · Tehnologie · Contact",
     "After": "După",
     "All rights reserved.": "Toate drepturile rezervate.",
@@ -157,7 +157,18 @@ export const pageTranslations = {
     "reimagined.": "reinventat.",
     "the night.": "noaptea.",
     "to be lived with.": "pentru a face parte din viața ta.",
-    "to finished part.": "la piesa finală."
+    "to finished part.": "la piesa finală.",
+    "Web Development · Redesign · Online Stores": "Site-uri de prezentare · Redesign · Magazine online",
+    "Pricing": "Prețuri",
+    "Websites that bring in clients.": "Site-uri care aduc clienți.",
+    "Built for your business.": "Construite pentru afacerea ta.",
+    "We design and build fast, modern websites for businesses in Romania and abroad — from a first landing page to a complete online store.": "Proiectăm și construim site-uri rapide și moderne pentru firme din România și din străinătate, de la un prim landing page până la un magazin online complet.",
+    "Also: 3D scanning & printing": "Oferim și scanare și printare 3D",
+    "Need a part scanned, reproduced or printed? See our 3D services.": "Ai nevoie de o piesă scanată, reprodusă sau printată? Vezi serviciile noastre 3D.",
+    "See 3D services": "Vezi serviciile 3D",
+    "We combine design, development and technical thinking to build websites that are clear, fast and made to bring in clients.": "Combinăm designul, dezvoltarea și gândirea tehnică pentru a construi site-uri clare, rapide și făcute să aducă clienți.",
+    "From a quick landing page to a full redesign or online store.": "De la un landing page rapid până la un redesign complet sau un magazin online.",
+    "3D Scanning & Printing": "Scanare și printare 3D"
   },
   "en": {
     "3D Printing": "3D Printing",
@@ -170,7 +181,7 @@ export const pageTranslations = {
     "A complete workflow for recreating, improving and manufacturing real-world components with precision.": "A complete workflow for recreating, improving and manufacturing real-world components with precision.",
     "ABOUT US": "ABOUT US",
     "APEX AUTO — Automotive Service Showcase": "APEX AUTO — Automotive Service Showcase",
-    "About": "About",
+    "About": "About me",
     "About · Treatments · Technology · Contact": "About · Treatments · Technology · Contact",
     "After": "After",
     "All rights reserved.": "All rights reserved.",
@@ -315,6 +326,17 @@ export const pageTranslations = {
     "reimagined.": "reimagined.",
     "the night.": "the night.",
     "to be lived with.": "to be lived with.",
-    "to finished part.": "to finished part."
+    "to finished part.": "to finished part.",
+    "Web Development · Redesign · Online Stores": "Web Development · Redesign · Online Stores",
+    "Pricing": "Pricing",
+    "Websites that bring in clients.": "Websites that bring in clients.",
+    "Built for your business.": "Built for your business.",
+    "We design and build fast, modern websites for businesses in Romania and abroad — from a first landing page to a complete online store.": "We design and build fast, modern websites for businesses in Romania and abroad — from a first landing page to a complete online store.",
+    "Also: 3D scanning & printing": "Also: 3D scanning & printing",
+    "Need a part scanned, reproduced or printed? See our 3D services.": "Need a part scanned, reproduced or printed? See our 3D services.",
+    "See 3D services": "See 3D services",
+    "We combine design, development and technical thinking to build websites that are clear, fast and made to bring in clients.": "We combine design, development and technical thinking to build websites that are clear, fast and made to bring in clients.",
+    "From a quick landing page to a full redesign or online store.": "From a quick landing page to a full redesign or online store.",
+    "3D Scanning & Printing": "3D Scanning & Printing"
   }
 } as const;

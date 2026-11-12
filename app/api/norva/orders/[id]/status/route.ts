@@ -3,6 +3,7 @@ import "server-only";
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { adminGuard } from "@/lib/auth/admin";
 
 const allowedStatuses = [
     "new",
@@ -32,6 +33,10 @@ export async function PATCH(
                 { status: 401 }
             );
         }
+
+        // Only Formora admins may manage NØRVA data (service-role bypasses RLS).
+        const forbidden = await adminGuard();
+        if (forbidden) return forbidden;
 
         // 2. Get order ID
         const { id } = await context.params;
