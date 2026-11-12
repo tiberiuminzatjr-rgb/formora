@@ -72,7 +72,7 @@ export const pricingCopy = {
                 name: "Start",
                 tagline: "O pagină care aduce clienți",
                 bestFor: "Pentru: freelanceri, meseriași, evenimente, lansări de produs",
-                delivery: "5–7 zile",
+                delivery: "2–3 zile",
                 features: [
                     "Landing page cu design personalizat (nu șablon)",
                     "Optimizat pentru telefon, tabletă și desktop",
@@ -88,7 +88,7 @@ export const pricingCopy = {
                 name: "Business",
                 tagline: "Site complet de prezentare",
                 bestFor: "Pentru: clinici, service-uri, restaurante, firme de construcții",
-                delivery: "2–3 săptămâni",
+                delivery: "5–7 zile",
                 features: [
                     "Tot ce include Start, plus:",
                     "Până la 6 pagini (Acasă, Servicii, Despre, Galerie, Contact…)",
@@ -104,7 +104,7 @@ export const pricingCopy = {
                 name: "Magazin online",
                 tagline: "Vinde online, 24/7",
                 bestFor: "Pentru: magazine locale, producători, branduri noi",
-                delivery: "4–6 săptămâni",
+                delivery: "1-2 săptămâni",
                 features: [
                     "Tot ce include Business, plus:",
                     "Catalog de produse cu categorii și filtre",
@@ -146,7 +146,7 @@ export const pricingCopy = {
                 name: "Start",
                 tagline: "One page that brings in clients",
                 bestFor: "For: freelancers, tradespeople, events, product launches",
-                delivery: "5–7 days",
+                delivery: "2-3 days",
                 features: [
                     "Custom-designed landing page (no templates)",
                     "Optimised for phone, tablet and desktop",
@@ -162,7 +162,7 @@ export const pricingCopy = {
                 name: "Business",
                 tagline: "Complete business website",
                 bestFor: "For: clinics, workshops, restaurants, construction companies",
-                delivery: "2–3 weeks",
+                delivery: "5–7 days",
                 features: [
                     "Everything in Start, plus:",
                     "Up to 6 pages (Home, Services, About, Gallery, Contact…)",
@@ -178,7 +178,7 @@ export const pricingCopy = {
                 name: "Online store",
                 tagline: "Sell online, 24/7",
                 bestFor: "For: local shops, makers, new brands",
-                delivery: "4–6 weeks",
+                delivery: "1-2 weeks",
                 features: [
                     "Everything in Business, plus:",
                     "Product catalogue with categories and filters",
